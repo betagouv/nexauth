@@ -134,7 +134,3 @@ dist
 # Custom
 
 /dist
-
-# nexauth Key Pair
-nexauth.public.json
-.nexauth.private.json

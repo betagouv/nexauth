@@ -4,14 +4,18 @@
   "description": "Strongly opinionated but dead simple and safe JWT-based authentication for Next.js framework.",
   "license": "AGPL-3.0",
   "type": "module",
+  "bin": {
+    "nexauth": "./dist/cli.js"
+  },
   "exports": {
     "./AuthProvider": "./dist/AuthProvider/index.js",
     "./privateJwt": "./dist/libs/privateJwt.js",
-    "./publicJwt": "./dist/libs/publicJwt.js",
-    "./generateKeyPairFiles": "./dist/libs/generateKeyPairFiles.js"
+    "./publicJwt": "./dist/libs/publicJwt.js"
   },
   "scripts": {
-    "build": "rm -Rf ./dist && rollup -c",
+    "build": "rm -Rf ./dist && rollup -c && yarn build:cli",
+    "build:cli": "rollup -c ./rollup.config.cli.js",
+    "dev:cli": "yarn build:cli && node ./dist/cli.js",
     "prepare": "husky install",
     "setup": "yarn build && node ./dist/scripts/generateKeyPairFiles.js",
     "test": "yarn test:lint && yarn test:build && yarn test:unit",
@@ -23,6 +27,7 @@
   },
   "dependencies": {
     "bhala": "1.0.2",
+    "clipboardy": "3.0.0",
     "cuid": "2.1.8",
     "jose": "4.3.7"
   },

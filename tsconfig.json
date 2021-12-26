@@ -3,7 +3,6 @@
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": true,
     "isolatedModules": true,
     "jsx": "react",
     "lib": ["DOM", "esnext"],

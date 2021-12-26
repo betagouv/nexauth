@@ -2,18 +2,17 @@ import commonjs from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 
-const FILE_PATHS = ['./src/AuthProvider/index.tsx', './src/libs/privateJwt.ts', './src/libs/publicJwt.ts']
-
-const getConfig = filePath => ({
+export default {
   external: ['bhala', 'clipboardy', 'cuid', 'jose', 'next/router', 'react'],
 
-  input: filePath,
+  input: './src/commands/index.ts',
 
   output: [
     {
-      dir: './dist',
+      banner: '#!/usr/bin/env node\n',
+      file: './dist/cli.js',
       format: 'esm',
-      preserveModules: true,
+      preserveModules: false,
       sourcemap: false,
     },
   ],
@@ -26,9 +25,7 @@ const getConfig = filePath => ({
     commonjs(),
     // Transpile TS & TSX to JS:
     typescript({
-      tsconfig: './tsconfig.dist.json',
+      tsconfig: './tsconfig.cli.json',
     }),
   ],
-})
-
-export default FILE_PATHS.map(getConfig)
+}
