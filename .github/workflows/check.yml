@@ -1,0 +1,70 @@
+name: Check
+
+on: push
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.5.0
+        with:
+          cache: yarn
+          node-version: 16
+      - name: Install
+        run: yarn
+      - name: Lint
+        run: yarn test:lint --ignore-pattern '/__tests__/*'
+
+  type:
+    name: Type
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.5.0
+        with:
+          cache: yarn
+          node-version: 16
+      - name: Install
+        run: yarn
+      - name: Lint
+        run: yarn test:type
+
+  test_unit:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.5.0
+        with:
+          cache: yarn
+          node-version: 16
+      - name: Install
+        run: yarn
+      - name: Test
+      - run: yarn test:unit --coverage --maxWorkers="50%"
+      - name: Upload coverage
+        run: yarn codecov
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.5.0
+        with:
+          cache: yarn
+          node-version: 16
+      - name: Install
+        run: yarn
+      - name: Build
+        run: yarn test:build

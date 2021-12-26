@@ -1,0 +1,11 @@
+
+# A comment
+anExcludedFile.txt
+anExcludedFileWithATrailingSpace
+
+
+ # A malindented comment
+anExcludedDirectory/
+
+# This comment is followed by a line made of an empty space
+ 

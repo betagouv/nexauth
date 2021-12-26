@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: metiers_numeriques_db
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRE_DATABASE}
+      POSTGRES_USER: ${POSTGRE_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRE_PASSWORD}
+    volumes:
+      - postgre-data:/var/lib/postgresql/data
+
+volumes:
+  postgre-data:
