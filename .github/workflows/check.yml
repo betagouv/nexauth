@@ -48,6 +48,8 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn
+      - name: Setup
+        run: yarn setup
       - name: Test
         run: yarn test:unit --coverage --maxWorkers="50%"
       - name: Upload coverage
