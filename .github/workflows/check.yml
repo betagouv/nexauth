@@ -49,7 +49,7 @@ jobs:
       - name: Install
         run: yarn
       - name: Test
-      - run: yarn test:unit --coverage --maxWorkers="50%"
+        run: yarn test:unit --coverage --maxWorkers="50%"
       - name: Upload coverage
         run: yarn codecov
 
@@ -67,4 +67,4 @@ jobs:
       - name: Install
         run: yarn
       - name: Build
-        run: yarn test:build
+        run: yarn build
