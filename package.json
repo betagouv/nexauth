@@ -15,7 +15,6 @@
     "prepare": "husky install",
     "setup": "yarn build && node ./dist/scripts/generateKeyPairFiles.js",
     "test": "yarn test:lint && yarn test:build && yarn test:unit",
-    "test:build": "next build && yarn build:assets && yarn build:server",
     "test:lint": "eslint --ext js,ts,tsx .",
     "test:e2e": "jest --config=./meta/jest.e2e.config.js",
     "test:type": "tsc",
