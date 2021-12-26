@@ -17,12 +17,12 @@
     "build:cli": "rollup -c ./rollup.config.cli.js",
     "dev:cli": "yarn build:cli && node ./dist/cli.js",
     "prepare": "husky install",
-    "setup": "yarn build && node ./dist/scripts/generateKeyPairFiles.js",
     "test": "yarn test:lint && yarn test:build && yarn test:unit",
     "test:lint": "eslint --ext js,ts,tsx .",
     "test:e2e": "jest --config=./meta/jest.e2e.config.js",
     "test:type": "tsc",
     "test:unit": "jest --config=./meta/jest.unit.config.js",
+    "test:unit:setup": "yarn dev:cli init",
     "test:unit:watch": "yarn test:unit --watch"
   },
   "dependencies": {
@@ -44,6 +44,7 @@
     "@types/react": "17.0.38",
     "codecov": "3.8.3",
     "dayjs": "1.10.7",
+    "dotenv": "10.0.0",
     "husky": "7.0.4",
     "jest": "27.4.5",
     "next": "12.0.7",

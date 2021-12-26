@@ -1,10 +1,9 @@
 /* eslint-env browser, node */
 
-import { importJWK, jwtVerify, KeyLike } from 'jose'
+import { importSPKI, jwtVerify, KeyLike } from 'jose'
 
 import getUnixTime from '../helpers/getUnixTime'
 import handleError from '../helpers/handleError'
-import isBrowser from '../helpers/isBrowser'
 import { IdTokenPayload, TokenPayload } from '../types'
 
 /**
@@ -61,13 +60,23 @@ class PublicJwt {
         return this.publicKey
       }
 
-      const publicKeyPath = isBrowser() ? '/nexauth.public.json' : `${process.cwd()}/public/nexauth.public.json`
-      const publicKeyAsJwk = await import(publicKeyPath)
+      const publicKeyAsPem = process.env.NEXT_PUBLIC_EDDSA_PUBLIC_KEY
+      if (publicKeyAsPem === undefined) {
+        throw new Error(
+          [
+            '`NEXT_PUBLIC_EDDSA_PUBLIC_KEY` environment variable is undefined.',
+            process.env.NODE_ENV === 'production'
+              ? 'This seems to be a production environment. ' +
+                'Did you forget to run `npx nexauth generate` and add the EcDSA key pair to your deployment env vars?'
+              : 'This seems to be a development environment. Did you forget to run `npx nexauth init`?',
+          ].join('\n'),
+        )
+      }
 
       // const publicKey = isBrowser()
       //   ? await importJWKInBrowser(publicKeyAsJwk, 'EdDSA')
       //   : await importJWK(publicKeyAsJwk, 'EdDSA')
-      const publicKey = await importJWK(publicKeyAsJwk, 'EdDSA')
+      const publicKey = await importSPKI(publicKeyAsPem, 'EdDSA')
       this.publicKey = publicKey
 
       return publicKey

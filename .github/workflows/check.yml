@@ -16,7 +16,7 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn
-      - name: Lint
+      - name: Run linter
         run: yarn test:lint --ignore-pattern '/__tests__/*'
 
   type:
@@ -32,7 +32,7 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn
-      - name: Lint
+      - name: Check types
         run: yarn test:type
 
   test_unit:
@@ -48,11 +48,11 @@ jobs:
           node-version: 16
       - name: Install
         run: yarn
-      - name: Setup
-        run: yarn setup
-      - name: Test
+      - name: Setup unit tests
+        run: yarn test:unit:setup
+      - name: Run unit tests
         run: yarn test:unit --coverage --maxWorkers="50%"
-      - name: Upload coverage
+      - name: Upload unit tests coverage
         run: yarn codecov
 
   build:

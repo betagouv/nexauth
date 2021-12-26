@@ -1,11 +1,13 @@
 /* eslint-env  node */
 
 import cuid from 'cuid'
-import { importJWK, JWTHeaderParameters, KeyLike, SignJWT } from 'jose'
+import { importPKCS8, JWTHeaderParameters, KeyLike, SignJWT } from 'jose'
 
 import getUnixTime from '../helpers/getUnixTime'
 import handleError from '../helpers/handleError'
 import isBrowser from '../helpers/isBrowser'
+
+const { EDDSA_PRIVATE_KEY, NODE_ENV } = process.env
 
 /**
  * Private JWT library for node environment.
@@ -53,11 +55,19 @@ class PrivateJwt {
         return this.privateKey
       }
 
-      const privateKeyPath = `${process.cwd()}/.nexauth.private.json`
-      const privateKeyAsJwk = await import(privateKeyPath)
-      const privateKeyAsJoseKey = await importJWK(privateKeyAsJwk, 'EdDSA')
+      if (EDDSA_PRIVATE_KEY === undefined) {
+        throw new Error(
+          [
+            '`EDDSA_PRIVATE_KEY` environment variable is undefined.',
+            NODE_ENV === 'production'
+              ? 'This seems to be a production environment. ' +
+                'Did you forget to run `npx nexauth generate` and add the EcDSA key pair to your deployment env vars?'
+              : 'This seems to be a development environment. Did you forget to run `npx nexauth init`?',
+          ].join('\n'),
+        )
+      }
 
-      this.privateKey = privateKeyAsJoseKey
+      this.privateKey = await importPKCS8(EDDSA_PRIVATE_KEY, 'EdDSA')
 
       return this.privateKey
     } catch (err) {
