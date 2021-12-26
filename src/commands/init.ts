@@ -1,5 +1,5 @@
 import ß from 'bhala'
-import crypto from 'crypto'
+import crypto, { KeyPairSyncResult } from 'crypto'
 import { promises as fs } from 'fs'
 import path from 'path'
 
@@ -39,43 +39,45 @@ export default async function init(): Promise<void> {
     }
 
     const dotEnvSource = await fs.readFile(dotEnvPath, 'utf-8')
-    if (/RSA_PRIVATE_KEY=/.test(dotEnvSource) && /NEXT_PUBLIC_RSA_PUBLIC_KEY=/.test(dotEnvSource)) {
+    if (/EDDSA_PRIVATE_KEY=/.test(dotEnvSource) && /NEXT_PUBLIC_EDDSA_PUBLIC_KEY=/.test(dotEnvSource)) {
       return
     }
 
     // https://nodejs.org/api/crypto.html#cryptogeneratekeypairtype-options-callback
     // > It is recommended to encode public keys as 'spki'
     // > and private keys as 'pkcs8' with encryption for long-term storage
-    const keypair = crypto.generateKeyPairSync('ed448', {
+    const keyPair = crypto.generateKeyPairSync('ed448', {
       modulusLength: 4096,
       privateKeyEncoding: {
-        format: 'jwk',
+        format: 'pem',
         type: 'pkcs8',
       },
       publicKeyEncoding: {
-        format: 'jwk',
+        format: 'pem',
         type: 'spki',
       },
-    })
+    }) as unknown as KeyPairSyncResult<string, string>
 
-    const privateKeyJwkString = JSON.stringify(keypair.privateKey)
-    const publicKeyJwkString = JSON.stringify(keypair.publicKey)
-    const dotEnvSourceWithRsaKeyPair = [
+    const privateKeyJwkString = keyPair.privateKey.trim().replace(/\n/g, '\\n')
+    const publicKeyJwkString = keyPair.publicKey.trim().replace(/\n/g, '\\n')
+    const dotEnvSourceWithEddsaKeyPair = [
       dotEnvSource.trim(),
       '',
       `##################################################`,
-      `# RSA Key Pair`,
+      `# EdDSA Key Pair`,
       `# ⚠️ Don't add or change anything below these lines.`,
-      `# 🖥️ Run \`npx nexauth\` to generate them.`,
+      `# 🖥️ Run \`npx nexauth init\` to generate them in development.`,
       '',
-      `RSA_PRIVATE_KEY="${privateKeyJwkString}"`,
-      `NEXT_PUBLIC_RSA_PUBLIC_KEY="${publicKeyJwkString}"`,
+      `EDDSA_PRIVATE_KEY="${privateKeyJwkString}"`,
+      `NEXT_PUBLIC_EDDSA_PUBLIC_KEY="${publicKeyJwkString}"`,
     ]
       .join('\n')
       .trim()
 
-    ß.info(`${SCOPE} Updating \`./.env\` file to add generated RSA_PRIVATE_KEY & NEXT_PUBLIC_RSA_PUBLIC_KEY variables…`)
-    await fs.writeFile(dotEnvPath, `${dotEnvSourceWithRsaKeyPair}\n`, 'utf-8')
+    ß.info(
+      `${SCOPE} Updating \`./.env\` file to add generated EDDSA_PRIVATE_KEY & NEXT_PUBLIC_EDDSA_PUBLIC_KEY variables…`,
+    )
+    await fs.writeFile(dotEnvPath, `${dotEnvSourceWithEddsaKeyPair}\n`, 'utf-8')
 
     process.exit()
   } catch (err) {

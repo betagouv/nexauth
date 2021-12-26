@@ -11,6 +11,11 @@ _🗒️ Work and documentation in progress!_
 
 ---
 
+- [Introduction](#introduction)
+- [Get started](#get-started)
+  - [Install](#install)
+  - [Setup](#setup)
+  - [Deployment](#deployment)
 - [Tokens](#tokens)
   - [ID Token](#id-token)
   - [Access Token](#access-token)
@@ -21,28 +26,63 @@ _🗒️ Work and documentation in progress!_
 
 ---
 
-## Tokens
+## Introduction
 
 All tokens are signed (JWS) but **not** encrypted (JWE) JWTs.
 
 Why? Because JWEs are only required when storing sensitive private information over non-secure connections,
 which is something you should **never** do anyway [[1]][lnk-jwt-rfc-privacy].
 
-They are signed (and verified) via a generated RSA key pair
-which can be automatically generated and git-ignored by running:
+The signing algorithm uses EdDSA elliptic curve in its Ed448 variant [[2]][lnk-curve448] [[3]][lnk-ed25517-vs-ed448].
+
+EdDSA key pair are consumend as environment variables, namely:
+
+- `EDDSA_PRIVATE_KEY`: Only available within back-end applications.
+- `NEXT_PUBLIC_EDDSA_PUBLIC_KEY`: Available within both back-end and front-end applications.
+
+## Get started
+
+### Install
 
 ```sh
-node ./node_modules/nexauth/dist/scripts/generateKeyPairFiles.js
+npm i -E nexauth
 ```
 
-at the root of your Next.js project.
+or:
+
+```sh
+yarn add -E nexauth
+```
+
+### Setup
+
+At the root of your project, run:
+
+```sh
+npx nexauth init
+```
+
+which will generate and inject both `EDDSA_PRIVATE_KEY` & `NEXT_PUBLIC_EDDSA_PUBLIC_KEY` environment variables
+within your `.env` file.
+
+### Deployment
+
+You'll need the same enviroment variables in production but **DON'T USE YOUR LOCAL VALUES IN PRODUCTION**.
+
+Generate a new EdDSA key pair for that, by running:
+
+```sh
+npx nexauth generate
+```
+
+## Tokens
 
 ### ID Token
 
 - **Brief:** Carries custom user information used by the front-end client (email, name, role, scopes, etc).
 - **Representation:** `JWS`
-- **Lifetime:** `36000` (= 10 hours in seconds) [[2][lnk-signing-algorithms]]
-- **Algorithm:** `RS256`
+- **Lifetime:** `36000` (= 10 hours in seconds) [[4][lnk-signing-algorithms]]
+<!-- - **Algorithm:** `RS256` -->
 
 ### Access Token
 
@@ -86,5 +126,7 @@ Don't hesitate to use these libraries instead of **nextauth** if they're a bette
 [lnk-license]: https://github.com/betagouv/nexauth/blob/main/LICENSE
 [lnk-npm]: https://www.npmjs.com/package/nexauth
 
+[lnk-curve448]: https://en.wikipedia.org/wiki/Curve448
+[lnk-ed25517-vs-ed448]: https://crypto.stackexchange.com/a/67468/52638
 [lnk-jwt-rfc-privacy]: https://www.rfc-editor.org/rfc/rfc7519#section-11.2
 [lnk-signing-algorithms]: https://auth0.com/docs/best-practices/token-best-practices#signing-algorithms-

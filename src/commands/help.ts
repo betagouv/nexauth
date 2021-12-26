@@ -14,10 +14,10 @@ export default function help() {
     ``,
     `            init   Prepare your development environment:`,
     `                   - Git-ignore your local .env file if it's not already ignored`,
-    `                   - Inject an RSA key pair into your local .env file`,
-    `        generate   Generate an RSA key pair for your production environment:`,
-    `                   - Copy the generated RSA_PRIVATE_KEY to your clipboard`,
-    `                   - Output the generated NEXT_PUBLIC_RSA_PUBLIC_KEY`,
+    `                   - Inject an EdDSA key pair into your local .env file`,
+    `        generate   Generate an EdDSA key pair for your production environment:`,
+    `                   - Copy the generated EDDSA_PRIVATE_KEY to your clipboard`,
+    `                   - Output the generated NEXT_PUBLIC_EDDSA_PUBLIC_KEY`,
     ``,
   ]
   const text = textLines.join('\n')
