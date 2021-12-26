@@ -1,5 +1,10 @@
 # nextauth
 
+[![License][img-license]][lnk-license]
+[![CI Status][img-github]][lnk-github]
+[![Code Coverage][img-codecov]][lnk-codecov]
+[![NPM Version][img-npm]][lnk-npm]
+
 Strongly opinionated but dead simple and safe JWT-based authentication for Next.js framework.
 
 _🗒️ Work and documentation in progress!_
@@ -72,13 +77,14 @@ Don't hesitate to use these libraries instead of **nextauth** if they're a bette
 
 ---
 
+[img-codecov]: https://img.shields.io/codecov/c/github/betagouv/nexauth/main?style=flat-square
 [img-github]: https://img.shields.io/github/workflow/status/betagouv/nexauth/Check/main?style=flat-square
 [img-license]: https://img.shields.io/github/license/betagouv/nexauth?style=flat-square
 [img-npm]: https://img.shields.io/npm/v/nexauth?style=flat-square
+[lnk-codecov]: https://codecov.io/gh/betagouv/nexauth/branch/main
 [lnk-github]: https://github.com/betagouv/nexauth/actions?query=branch%3Amain++
 [lnk-license]: https://github.com/betagouv/nexauth/blob/main/LICENSE
 [lnk-npm]: https://www.npmjs.com/package/nexauth
-[lnk-storybook]: https://singularity-ui.github.io/core/
 
 [lnk-jwt-rfc-privacy]: https://www.rfc-editor.org/rfc/rfc7519#section-11.2
 [lnk-signing-algorithms]: https://auth0.com/docs/best-practices/token-best-practices#signing-algorithms-
