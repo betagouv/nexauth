@@ -4,7 +4,13 @@
     "browser": false,
     "node": false
   },
-  "ignorePatterns": ["/dist/"],
+  "ignorePatterns": [
+    "/*.d.ts",
+    "/dist/",
+    "/e2e/with-prisma/nexauth/",
+    "/e2e/with-prisma/next-env.d.ts",
+    "/e2e/with-prisma/next.config.js"
+  ],
   "parserOptions": {
     "ecmaVersion": 2021,
     "project": "./tsconfig.json"
@@ -13,11 +19,12 @@
     "class-methods-use-this": "off",
     "consistent-return": "off",
 
+    "import/extensions": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": false,
-        "optionalDependencies": true,
+        "optionalDependencies": false,
         "peerDependencies": true
       }
     ],
@@ -41,9 +48,21 @@
       }
     },
     {
-      "files": ["!./src/**/*.js"],
+      "files": ["!/src/**/*.ts", "!/src/**/*.tsx"],
       "rules": {
         "import/no-extraneous-dependencies": "off"
+      }
+    },
+    {
+      "files": ["./e2e/with-prisma/**/*.ts", "./e2e/with-prisma/**/*.tsx"],
+      "parserOptions": {
+        "ecmaVersion": 2021,
+        "project": "./e2e/with-prisma/tsconfig.json"
+      },
+      "rules": {
+        "react/jsx-props-no-spreading": "off",
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off"
       }
     }
   ]

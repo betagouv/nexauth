@@ -70,3 +70,42 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build
+
+  test_e2e:
+    name: E2E Test
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_USER: test_db_user
+          POSTGRES_PASSWORD: test_db_password
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.5.0
+        with:
+          cache: yarn
+          node-version: 16
+      - name: Install
+        run: yarn
+      - name: Install Playwright browsers
+        run: |
+          npx playwright install-deps chromium
+          npx playwright install chromium
+      - name: Setup end-to-end tests
+        run: yarn test:e2e:setup
+      - name: Serve test application
+        run: yarn test:e2e:serve
+      - name: Run end-to-end tests
+        run: yarn test:e2e

@@ -5,7 +5,7 @@ import typescript from '@rollup/plugin-typescript'
 const FILE_PATHS = ['./src/AuthProvider/index.tsx', './src/libs/privateJwt.ts', './src/libs/publicJwt.ts']
 
 const getConfig = filePath => ({
-  external: ['bhala', 'clipboardy', 'cuid', 'jose', 'next/router', 'react'],
+  external: ['bhala', 'clipboardy', 'cuid', 'jose', 'next/router.js', 'react'],
 
   input: filePath,
 

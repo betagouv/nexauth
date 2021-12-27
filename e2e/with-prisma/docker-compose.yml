@@ -2,15 +2,18 @@ version: "3.9"
 
 services:
   db:
-    container_name: metiers_numeriques_db
+    container_name: nexauth_test_db
     image: postgres:14
     restart: always
     environment:
-      POSTGRES_DB: ${POSTGRE_DATABASE}
-      POSTGRES_USER: ${POSTGRE_USERNAME}
-      POSTGRES_PASSWORD: ${POSTGRE_PASSWORD}
+      POSTGRES_DB: test_db
+      POSTGRES_USER: test_db_user
+      POSTGRES_PASSWORD: test_db_password
     volumes:
       - postgre-data:/var/lib/postgresql/data
+    ports:
+      - 5432
+
 
 volumes:
   postgre-data:
