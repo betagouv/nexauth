@@ -1,4 +1,4 @@
-# nextauth
+# nexauth
 
 [![License][img-license]][lnk-license]
 [![CI Status][img-github]][lnk-github]
@@ -98,7 +98,7 @@ npx nexauth generate
 
 ## Alternatives
 
-**nextauth** is very opinionated for the sake of simplifying authentication covering SSR-generated, SPAs and
+**nexauth** is very opinionated for the sake of simplifying authentication covering SSR-generated, SPAs and
 API-based split applications. It's not intented to compete with more largely used authentication libraries as:
 
 - [NextAuth.js](https://next-auth.js.org/)
@@ -106,7 +106,7 @@ API-based split applications. It's not intented to compete with more largely use
 - [auth0](https://auth0.com/)
 - [iron-session](https://github.com/vvo/iron-session)
 
-Don't hesitate to use these libraries instead of **nextauth** if they're a better fit for your use-case.
+Don't hesitate to use these libraries instead of **nexauth** if they're a better fit for your use-case.
 
 ## References
 

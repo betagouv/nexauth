@@ -31,7 +31,7 @@ describe('helpers/handleError() [BROWSER]', () => {
     const runner = () => handleError(error, `a/path`, true) as any
 
     expect(runner).toThrowError(
-      'nextauth had to terminate unexpectedly. ' +
+      'nexauth had to terminate unexpectedly. ' +
         'Please check your logs or file an issue: https://github.com/betagouv/nexauth/issues.',
     )
 

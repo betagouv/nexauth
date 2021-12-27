@@ -49,7 +49,7 @@ function handleError(error: any, scope: string, isFatal: boolean = false): any {
     }
 
     throw new Error(
-      'nextauth had to terminate unexpectedly. ' +
+      'nexauth had to terminate unexpectedly. ' +
         'Please check your logs or file an issue: https://github.com/betagouv/nexauth/issues.',
     )
   }
