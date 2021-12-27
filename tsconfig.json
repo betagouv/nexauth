@@ -3,10 +3,9 @@
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
     "jsx": "react",
     "lib": ["DOM", "esnext"],
-    "module": "ESNext",
+    "module": "nodenext",
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
@@ -19,6 +18,6 @@
     "strictNullChecks": true,
     "target": "ESNext"
   },
-  "exclude": ["dist/*", "node_modules/*"],
+  "exclude": ["dist/*", "e2e/with-prisma/*", "node_modules/*"],
   "include": ["**/*.js", "**/*.ts", "**/*.tsx"]
 }

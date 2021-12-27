@@ -3,7 +3,6 @@
   "compilerOptions": {
     "declaration": false,
     "declarationDir": null,
-    "isolatedModules": false,
     "noEmit": false,
     "rootDir": "./src"
   },
