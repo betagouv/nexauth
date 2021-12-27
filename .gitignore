@@ -135,4 +135,3 @@ dist
 
 /dist
 /*.d.ts
-!/e2e/with-prisma/.env

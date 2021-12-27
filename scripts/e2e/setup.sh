@@ -27,6 +27,7 @@ printf "${BLUE}Installing dependencies within E2E workspace…${NC}\n"
 yarn
 
 printf "${BLUE}Building test app within E2E workspace…${NC}\n"
+cp ./.env.sample ./.env
 yarn build
 
 # We only need a PostreSQL Docker container outside of Github Actions environment
