@@ -134,4 +134,7 @@ dist
 # Custom
 
 /dist
-/*.d.ts
+/test-results
+
+/e2e/with-prisma/.gitignore
+/test-results.zip

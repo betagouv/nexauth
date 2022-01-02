@@ -4,8 +4,3 @@
 !/LICENSE
 !/package.json
 !/README.md
-
-# TODO Solve this dirty ESM types declaration workaround.
-!/AuthProvider.d.ts
-!/privateJwt.d.ts
-!/publicJwt.d.ts

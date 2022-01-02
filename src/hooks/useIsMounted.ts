@@ -1,3 +1,5 @@
+/* eslint-env browser */
+
 import { useCallback, useEffect, useRef } from 'react'
 
 export default function useIsMounted(): () => boolean {

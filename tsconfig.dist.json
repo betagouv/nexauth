@@ -1,11 +1,14 @@
 {
   "extends": ".",
   "compilerOptions": {
+    "allowJs": false,
     "declaration": true,
-    "declarationDir": "./dist",
+    "inlineSources": true,
     "noEmit": false,
-    "rootDir": "./src"
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true
   },
-  "exclude": ["src/commands/*", "**/*.test.ts"],
-  "include": ["**/*.ts", "**/*.tsx"]
+  "exclude": ["**/*.test.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

@@ -9,11 +9,5 @@ services:
       POSTGRES_DB: test_db
       POSTGRES_USER: test_db_user
       POSTGRES_PASSWORD: test_db_password
-    volumes:
-      - postgre-data:/var/lib/postgresql/data
     ports:
-      - 5432
-
-
-volumes:
-  postgre-data:
+      - 5432:5432

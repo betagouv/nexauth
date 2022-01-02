@@ -3,21 +3,21 @@
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "jsx": "react",
-    "lib": ["DOM", "esnext"],
-    "module": "nodenext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": false,
-    "outDir": "./dist",
-    "removeComments": true,
     "resolveJsonModule": true,
     "rootDir": ".",
+    "skipDefaultLibCheck": false,
     "skipLibCheck": true,
     "strict": false,
     "strictNullChecks": true,
     "target": "ESNext"
   },
   "exclude": ["dist/*", "e2e/with-prisma/*", "node_modules/*"],
-  "include": ["**/*.js", "**/*.ts", "**/*.tsx"]
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "dist/commands/index.mjs"]
 }

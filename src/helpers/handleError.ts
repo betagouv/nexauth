@@ -1,14 +1,7 @@
 import ß from 'bhala'
 
-import isBrowser from './isBrowser'
-
-const getErrorConstructorName = (error: any) => {
-  if (error === undefined || error.constructor === undefined) {
-    return 'undefined'
-  }
-
-  return error.constructor.name
-}
+import getConstructorName from './getConstructorName.js'
+import isBrowser from './isBrowser.js'
 
 function handleError(error: any, scope: string): void
 function handleError(error: any, scope: string, isFatal: true): never
@@ -35,7 +28,7 @@ function handleError(error: any, scope: string, isFatal: boolean = false): any {
       // eslint-disable-next-line no-case-declarations
       ß.error(`[nexauth] [helpers/handleError()] This type of error cannot be processed. This should never happen.`)
       ß.error(`[nexauth] [helpers/handleError()] Error Type: ${typeof error}`)
-      ß.error(`[nexauth] [helpers/handleError()] Error Constructor: ${getErrorConstructorName(error)}`)
+      ß.error(`[nexauth] [helpers/handleError()] Error Constructor: ${getConstructorName(error)}`)
       errorString = String(error)
   }
 

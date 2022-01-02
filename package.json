@@ -8,9 +8,15 @@
     "node": ">=16"
   },
   "bin": {
-    "nexauth": "./dist/cli.js"
+    "nexauth": "./dist/commands/index.js"
   },
-  "exports": {
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "_exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
     "./AuthProvider": {
       "import": "./dist/AuthProvider/index.js",
       "types": "./dist/AuthProvider/index.d.ts"
@@ -22,41 +28,51 @@
     "./publicJwt": {
       "import": "./dist/libs/publicJwt.js",
       "types": "./dist/libs/publicJwt.d.ts"
+    },
+    "./PrismaAdapter": {
+      "import": "./dist/adapters/PrismaAdapter/index.js",
+      "types": "./dist/adapters/PrismaAdapter/index.d.ts"
+    },
+    "./useAuth": {
+      "import": "./dist/hooks/useAuth.js",
+      "types": "./dist/hooks/useAuth.d.ts"
     }
   },
   "scripts": {
-    "build": "rm -Rf ./dist && rollup -c && yarn build:cli",
-    "build:cli": "rollup -c ./rollup.config.cli.js",
-    "postbuild": "sh ./scripts/build/postbuild.sh",
-    "dev:cli": "yarn build:cli && node ./dist/cli.js",
+    "build": "rm -Rf ./dist && tsc -p ./tsconfig.dist.json",
+    "build:cli": "tsc -p ./tsconfig.dist.cli.json",
+    "dev": "nodemon -e ts,tsx -w ./src -x \"yarn test:e2e:setup && cd ./e2e/with-prisma && yarn build && yarn start\"",
+    "dev:cli": "yarn build && node ./dist/commands/index.js",
     "prepare": "husky install",
     "test": "yarn test:lint && yarn test:build && yarn test:unit",
     "test:lint": "eslint --ext js,ts,tsx .",
-    "test:e2e": "playwright test -c ./meta/playwright.config.ts",
+    "test:e2e": "playwright test -c ./config/playwright.config.ts",
     "test:e2e:serve": "sh ./scripts/e2e/serve.sh",
     "test:e2e:setup": "yarn build && sh ./scripts/e2e/setup.sh",
     "test:type": "tsc",
-    "test:unit": "jest --config=./meta/jest.config.js",
+    "test:unit": "jest --config=./config/jest.config.js",
     "test:unit:setup": "yarn dev:cli init",
     "test:unit:watch": "yarn test:unit --watch"
   },
   "dependencies": {
-    "bhala": "1.0.2",
+    "bcryptjs": "2.4.3",
+    "bhala": "2.1.0",
     "clipboardy": "3.0.0",
     "cuid": "2.1.8",
-    "jose": "4.3.7"
+    "jose": "4.3.7",
+    "jwt-decode": "3.1.2",
+    "ky": "0.28.7",
+    "ramda": "0.27.1"
   },
   "devDependencies": {
     "@ivangabriele/commitlint-config": "1.0.2",
     "@ivangabriele/eslint-config-typescript-react": "2.1.4",
     "@ivangabriele/prettier-config": "2.0.2",
     "@playwright/test": "1.17.1",
-    "@rollup/plugin-commonjs": "21.0.1",
-    "@rollup/plugin-node-resolve": "13.1.1",
-    "@rollup/plugin-typescript": "8.3.0",
     "@testing-library/react-hooks": "7.0.2",
-    "@types/jest": "27.0.3",
-    "@types/node": "17.0.4",
+    "@types/bcryptjs": "2.4.2",
+    "@types/jest": "27.4.0",
+    "@types/node": "17.0.6",
     "@types/ramda": "0.27.62",
     "@types/react": "17.0.38",
     "codecov": "3.8.3",
@@ -65,12 +81,11 @@
     "husky": "7.0.4",
     "jest": "27.4.5",
     "next": "12.0.7",
-    "ramda": "0.27.1",
+    "nodemon": "2.0.15",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "rollup": "2.62.0",
     "ts-jest": "27.1.2",
-    "typescript": "^4.6.0-dev.20211226"
+    "typescript": "4.5.4"
   },
   "peerDependencies": {
     "next": ">=12",

@@ -1,19 +1,37 @@
 /* eslint-env browser, node */
 
-export type AuthContext<U extends Record<string, any> = {}> = {
-  logIn: AuthLogInFunction
+import type { NexauthError } from '../constants'
+import type { User } from '../types'
+
+export type AuthContext<U extends Record<string, any> = User> = {
+  logIn: (email: string, password: string) => Promise<AuthLogInSuccess | AuthLogInError>
   logOut: AuthLogOutFunction
+  refresh: () => Promise<void>
+  signUp: <U extends Record<string, any> = User>(newUserData: U) => Promise<AuthSignUpSuccess<U> | AuthSignUpError<U>>
   state: AuthState
   user?: U
 }
 
-export interface AuthLogInFunction {
-  (accessToken: string, refreshToken: string, idToken: string): Promise<void | AuthLogInError>
+export type AuthLogInError = {
+  error: {
+    email?: NexauthError
+    password?: NexauthError
+  }
+  isError: true
+}
+export type AuthLogInSuccess = {
+  isError: false
 }
 
-export type AuthLogInError = {
-  email?: string
-  password?: string
+export type AuthSignUpError<U extends Record<string, any> = User> = {
+  error: {
+    [prop in keyof U]?: NexauthError
+  }
+  isError: true
+}
+export type AuthSignUpSuccess<U extends Record<string, any> = User> = {
+  data: U
+  isError: false
 }
 
 export interface AuthLogOutFunction {

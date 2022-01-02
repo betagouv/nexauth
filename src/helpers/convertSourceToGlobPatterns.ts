@@ -1,6 +1,6 @@
 /* eslint-env browser, node */
 
-import handleError from './handleError'
+import handleError from './handleError.js'
 
 /**
  * Convert a file source to glob patterns (i.e.: reading a `.gitignore` file).

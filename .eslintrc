@@ -18,6 +18,7 @@
   "rules": {
     "class-methods-use-this": "off",
     "consistent-return": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
 
     "import/extensions": "off",
     "import/no-extraneous-dependencies": [
@@ -28,6 +29,7 @@
         "peerDependencies": true
       }
     ],
+    "import/prefer-default-export": "off",
 
     "react/function-component-definition": "off",
 
@@ -62,7 +64,10 @@
       "rules": {
         "react/jsx-props-no-spreading": "off",
         "react/prop-types": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "react/require-default-props": "off",
+
+        "@typescript-eslint/no-use-before-define": "off"
       }
     }
   ]
