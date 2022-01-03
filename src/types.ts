@@ -1,7 +1,7 @@
 import type { JWTPayload } from 'jose'
 import type { NextApiHandler } from 'next'
 
-export type AccessTokenPayload<U extends User = User> = TokenPayload<U>
+export type AccessTokenPayload<U extends Record<string, any> = User> = TokenPayload<U>
 
 export interface Adapter {
   refreshToken: AdapterOperator<RefreshToken>
