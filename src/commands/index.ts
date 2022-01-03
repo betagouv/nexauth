@@ -1,7 +1,11 @@
+#!/usr/bin/env node
+
+/* eslint-env node */
+
 import ß from 'bhala'
 
-import help from './help'
-import init from './init'
+import help from './help.js'
+import init from './init.js'
 
 const COMMANDS = ['help', 'init', 'generate']
 

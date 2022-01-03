@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 export default function help() {
   const textLines = [
     ``,

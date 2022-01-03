@@ -5,16 +5,19 @@ const IS_CI = Boolean(CI)
 
 const config: PlaywrightTestConfig = {
   forbidOnly: true,
+  maxFailures: 1,
   projects: [
     {
       name: 'chrome-desktop',
       use: { ...devices['Desktop Chrome'] },
     },
   ],
-  retries: IS_CI ? 2 : 0,
   testDir: '../e2e',
+  timeout: 5000,
   use: {
-    trace: 'on-first-retry',
+    headless: IS_CI,
+    screenshot: 'only-on-failure',
+    trace: 'retain-on-failure',
   },
 }
 

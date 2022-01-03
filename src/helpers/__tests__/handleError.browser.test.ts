@@ -2,8 +2,6 @@
  * @jest-environment jsdom
  */
 
-/* eslint-disable no-console */
-
 import ß from 'bhala'
 
 import handleError from '../handleError'

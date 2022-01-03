@@ -1,11 +1,15 @@
+/* eslint-env node */
+
 import ß from 'bhala'
-import crypto, { KeyPairSyncResult } from 'crypto'
+import crypto from 'crypto'
 import { promises as fs } from 'fs'
 import path from 'path'
 
-import convertSourceToGlobPatterns from '../helpers/convertSourceToGlobPatterns'
-import handleError from '../helpers/handleError'
-import isFile from '../helpers/isFile'
+import convertSourceToGlobPatterns from '../helpers/convertSourceToGlobPatterns.js'
+import handleError from '../helpers/handleError.js'
+import isFile from '../helpers/isFile.js'
+
+import type { KeyPairSyncResult } from 'crypto'
 
 const GITIGNORE_DOTENV_SOURCE = [`# Environment file`, `.env`, ``].join('\n')
 const SCOPE = '[nexauth] [cli]'
@@ -65,8 +69,8 @@ export default async function init(): Promise<void> {
       '',
       `##################################################`,
       `# EdDSA Key Pair`,
-      `# ⚠️ Don't add or change anything below these lines.`,
-      `# 🖥️ Run \`npx nexauth init\` to generate them in development.`,
+      `# Don't touch these lines!`,
+      `# Those are auto-generated via \`npx nexauth init\`.`,
       '',
       `EDDSA_PRIVATE_KEY="${privateKeyJwkString}"`,
       `NEXT_PUBLIC_EDDSA_PUBLIC_KEY="${publicKeyJwkString}"`,

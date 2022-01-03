@@ -2,14 +2,15 @@
 
 import { createContext } from 'react'
 
-import { AuthContext } from './types'
+import type { AuthContext } from './types'
 
-const noop: any = () => undefined
 const anoop: any = () => Promise.resolve()
 
 const Context = createContext<AuthContext>({
   logIn: anoop,
-  logOut: noop,
+  logOut: anoop,
+  refresh: anoop,
+  signUp: anoop,
   state: {
     isLoading: true,
   },

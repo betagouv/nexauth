@@ -1,4 +1,4 @@
-import handleError from './handleError'
+import handleError from './handleError.js'
 
 /**
  * Check if the given source string matches any of the given string or regular expression patterns.
