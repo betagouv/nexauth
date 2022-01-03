@@ -6,7 +6,7 @@ import refresh from './actions/refresh.js'
 import signUp from './actions/signUp.js'
 import ApiError from './libs/ApiError.js'
 
-import type { NexauthOptions } from './types'
+import type { NexauthOptions, UserWithPassword } from './types'
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const ACTION = {
@@ -16,7 +16,9 @@ const ACTION = {
   SIGN_UP: 'signup',
 }
 
-export default function Nexauth(options: NexauthOptions): NextApiHandler {
+export default function Nexauth<U extends UserWithPassword = UserWithPassword>(
+  options: NexauthOptions<U>,
+): NextApiHandler {
   const { adapter, config, customLogIn, customLogOut, customRefresh, customSignUp } = options
   const {
     accessTokenPublicUserProps = ['email', 'id'],
