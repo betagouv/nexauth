@@ -1,4 +1,4 @@
-/* eslint-env  node */
+/* eslint-env browser, node */
 
 import cuid from 'cuid'
 import { errors, jwtVerify, SignJWT, JWTVerifyOptions, importPKCS8, importSPKI } from 'jose'
@@ -41,7 +41,7 @@ class Jwt {
 
   public async sign(userId: string, durationInSeconds: number, data: Record<string, any> = {}): Promise<string> {
     if (isBrowser()) {
-      handleError('You cannot use sign() in a browser envriroment.', 'libs/Jwt.sign()', true)
+      handleError(new Error('You cannot use sign() in a browser envriroment.'), 'libs/Jwt.sign()', true)
     }
 
     try {
@@ -77,7 +77,7 @@ class Jwt {
     // https://github.com/panva/jose/issues/263
     // It may be worth checking: https://github.com/paulmillr/noble-ed25519
     if (isBrowser()) {
-      handleError('You cannot use verify() in a browser envriroment.', 'libs/Jwt.verify()', true)
+      handleError(new Error('You cannot use verify() in a browser envriroment.'), 'libs/Jwt.verify()', true)
     }
 
     try {

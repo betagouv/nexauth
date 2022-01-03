@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 
 import { NexauthError, useAuth } from 'nexauth'
-import { useRef, useState } from 'react'
+import { MutableRefObject, useRef, useState } from 'react'
 
 export const SIGN_IN_MODAL_TYPE = {
   LOG_IN: 'LOG_IN',
@@ -13,7 +13,7 @@ type SignInModalProps = {
   type?: string
 }
 export default function SignInModal(props: SignInModalProps) {
-  const $form = useRef<HTMLFormElement>()
+  const $form = useRef() as MutableRefObject<HTMLFormElement>
   const [errors, setErrors] = useState<{
     email?: string
     password?: string

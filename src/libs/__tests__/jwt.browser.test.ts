@@ -55,7 +55,7 @@ describe('libs/Jwt [BROWSER]', () => {
   })
 
   describe('.sign()', () => {
-    test('should trow an error when called within a browser environment', async () => {
+    test('should throw an error when called within a browser environment', async () => {
       await expect(jwt.sign).rejects.toThrow()
 
       expect(ß.error).toHaveBeenCalledTimes(1)
@@ -64,7 +64,7 @@ describe('libs/Jwt [BROWSER]', () => {
   })
 
   describe('.verify()', () => {
-    test('should trow an error when called within a browser environment', async () => {
+    test('should throw an error when called within a browser environment', async () => {
       await expect(jwt.verify).rejects.toThrow()
 
       expect(ß.error).toHaveBeenCalledTimes(1)
