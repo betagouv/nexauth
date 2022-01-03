@@ -42,7 +42,7 @@ export default async function signUp<U extends UserWithPassword = UserWithPasswo
         email?: string
         password?: string
       }
-    } = req.body
+    } = req
     if (typeof body.email !== 'string' || typeof body.password !== 'string') {
       res.status(422).json(new ApiError('Unprocessable Entity.', 422))
 
