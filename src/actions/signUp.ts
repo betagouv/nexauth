@@ -7,14 +7,14 @@ import encrypt from '../helpers/encrypt.js'
 import ApiError from '../libs/ApiError.js'
 import ApiResponse from '../libs/ApiResponse.js'
 
-import type { Adapter } from '../types'
+import type { Adapter, UserWithPassword } from '../types'
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const { CI } = process.env
 
 export const excludePassword = omit(['password'])
 
-export default async function signUp(
+export default async function signUp<U extends UserWithPassword = UserWithPassword>(
   req: NextApiRequest,
   res: NextApiResponse,
   adapter: Adapter,
@@ -25,7 +25,7 @@ export default async function signUp(
   }: {
     customSignUp?: NextApiHandler
     firstUserDefaultProps: Record<string, any>
-    newUserAllowedProps: string[]
+    newUserAllowedProps: Array<keyof U>
   },
 ) {
   try {
@@ -35,7 +35,15 @@ export default async function signUp(
       return
     }
 
-    if (typeof req.body.email !== 'string' || typeof req.body.password !== 'string') {
+    const {
+      body,
+    }: {
+      body: {
+        email?: string
+        password?: string
+      }
+    } = req.body
+    if (typeof body.email !== 'string' || typeof body.password !== 'string') {
       res.status(422).json(new ApiError('Unprocessable Entity.', 422))
 
       return
@@ -45,7 +53,7 @@ export default async function signUp(
     const isFirstUser = usersCount === 0
 
     const userWithSameEmail = await adapter.user.find({
-      email: req.body.email,
+      email: body.email,
     })
     if (userWithSameEmail !== null) {
       res.status(409).json(new ApiError('Conflict.', 409))
@@ -53,9 +61,9 @@ export default async function signUp(
       return
     }
 
-    const newUserData = pick(newUserAllowedProps)(req.body)
+    const newUserData = pick(newUserAllowedProps)(body)
     const newUserDataWithoutPassword = excludePassword(newUserData)
-    const passwordHash = await encrypt(String(newUserData.password))
+    const passwordHash = await encrypt((newUserData as U).password)
     const newUser = await adapter.user.create({
       ...newUserDataWithoutPassword,
       ...(isFirstUser ? firstUserDefaultProps : {}),
