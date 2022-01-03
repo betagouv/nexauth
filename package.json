@@ -52,7 +52,8 @@
     "test:type": "tsc",
     "test:unit": "jest --config=./config/jest.config.js",
     "test:unit:setup": "yarn dev:cli init",
-    "test:unit:watch": "yarn test:unit --watch"
+    "test:unit:watch": "yarn test:unit --watch",
+    "preversion": "yarn build"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
