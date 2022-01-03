@@ -21,7 +21,7 @@ export const excludePassword = omit(['password'])
 export default async function logIn<U extends UserWithPassword = UserWithPassword>(
   req: NextApiRequest,
   res: NextApiResponse,
-  adapter: Adapter,
+  adapter: Adapter<U>,
   {
     accessTokenPublicUserProps,
     customLogIn,
