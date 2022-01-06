@@ -4,6 +4,7 @@
 
 import ß from 'bhala'
 
+import generate from './generate.js'
 import help from './help.js'
 import init from './init.js'
 
@@ -27,6 +28,7 @@ if (typeof command !== 'string' || !COMMANDS.includes(command)) {
 
 switch (command) {
   case 'generate':
+    generate()
     break
 
   case 'init':

@@ -50,7 +50,7 @@ export default async function init(): Promise<void> {
     // https://nodejs.org/api/crypto.html#cryptogeneratekeypairtype-options-callback
     // > It is recommended to encode public keys as 'spki'
     // > and private keys as 'pkcs8' with encryption for long-term storage
-    const keyPair = crypto.generateKeyPairSync('ed448', {
+    const eddsaKeyPair = crypto.generateKeyPairSync('ed448', {
       modulusLength: 4096,
       privateKeyEncoding: {
         format: 'pem',
@@ -62,8 +62,8 @@ export default async function init(): Promise<void> {
       },
     }) as unknown as KeyPairSyncResult<string, string>
 
-    const privateKeyJwkString = keyPair.privateKey.trim().replace(/\n/g, '\\n')
-    const publicKeyJwkString = keyPair.publicKey.trim().replace(/\n/g, '\\n')
+    const privateKeyJwkString = eddsaKeyPair.privateKey.trim().replace(/\n/g, '\\n')
+    const publicKeyJwkString = eddsaKeyPair.publicKey.trim().replace(/\n/g, '\\n')
     const dotEnvSourceWithEddsaKeyPair = [
       dotEnvSource.trim(),
       '',
