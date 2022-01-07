@@ -7,5 +7,5 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 printf "${BLUE}Serving test application…${NC}\n"
-cd ./e2e/with-prisma
+cd ./examples/with-prisma
 yarn start &

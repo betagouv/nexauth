@@ -3,6 +3,7 @@
 - [Get Started](#get-started)
   - [Requirements](#requirements)
   - [Setup](#setup)
+  - [Develop](#develop)
 - [Test](#test)
   - [Unit](#unit)
     - [Watch unit tests](#watch-unit-tests)
@@ -34,6 +35,15 @@ yarn
 yarn setup
 ```
 
+### Develop
+
+To serve a local instance of with-prisma example (the default "test app")
+with nexauth recompiled and injected each time a `./src` file is updated, run:
+
+```sh
+yarn dev
+```
+
 ## Test
 
 ### Unit
@@ -63,7 +73,11 @@ yarn playwright install
 
 #### Run E2E tests
 
-To (re-)generate the test app (within `./e2e/with-prima` directory), run
+If you're already running the test app via `yarn dev`, you can just run `yarn:e2e` in another CLI tab.
+
+If not, follow these steps:
+
+To (re-)generate the test app (within `./examples/with-prima` directory), run
 
 ```sh
 yarn test:e2e:setup
@@ -72,11 +86,11 @@ yarn test:e2e:setup
 To serve the test app, run (in another CLI tab):
 
 ```sh
-cd ./e2e/with-prima
-yarn dev
+cd ./example/with-prima
+yarn dev # or `yarn start` for a full prod-like build
 ```
 
-To run the E2E test on the served test app, run:
+To run the E2E test on the served test app, run (within another CLI tab):
 
 ```sh
 yarn test:e2e

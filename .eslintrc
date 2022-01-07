@@ -7,9 +7,8 @@
   "ignorePatterns": [
     "/*.d.ts",
     "/dist/",
-    "/e2e/with-prisma/nexauth/",
-    "/e2e/with-prisma/next-env.d.ts",
-    "/e2e/with-prisma/next.config.js"
+    "/examples/with-prisma/next-env.d.ts",
+    "/examples/with-prisma/next.config.js"
   ],
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -56,10 +55,10 @@
       }
     },
     {
-      "files": ["./e2e/with-prisma/**/*.ts", "./e2e/with-prisma/**/*.tsx"],
+      "files": ["./examples/with-prisma/**/*.ts", "./examples/with-prisma/**/*.tsx"],
       "parserOptions": {
         "ecmaVersion": 2021,
-        "project": "./e2e/with-prisma/tsconfig.json"
+        "project": "./examples/with-prisma/tsconfig.json"
       },
       "rules": {
         "react/jsx-props-no-spreading": "off",

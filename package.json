@@ -41,7 +41,7 @@
   "scripts": {
     "build": "rm -Rf ./dist && tsc -p ./tsconfig.dist.json",
     "build:cli": "tsc -p ./tsconfig.dist.cli.json",
-    "dev": "nodemon -e ts,tsx -w ./src -x \"yarn test:e2e:setup && cd ./e2e/with-prisma && yarn build && yarn start\"",
+    "dev": "nodemon -e ts,tsx -w ./src -x \"yarn test:e2e:setup && cd ./examples/with-prisma && yarn build && yarn start\"",
     "dev:cli": "yarn build && node ./dist/commands/index.js",
     "dev:docs": "docsify serve ./docs",
     "prepare": "husky install",
