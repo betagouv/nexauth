@@ -96,6 +96,9 @@
     "react": "",
     "react-dom": ""
   },
+  "resolutions": {
+    "marked": ">=2.0.0"
+  },
   "prettier": "@ivangabriele/prettier-config",
   "publishConfig": {
     "access": "public"
