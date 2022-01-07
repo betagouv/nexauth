@@ -5,10 +5,10 @@ import isBrowser from '../helpers/isBrowser.js'
 import jwt from './jwt.js'
 
 import type { AccessTokenPayload, User } from '../types'
-import type { NextApiRequest } from 'next'
+import type { IncomingMessage } from 'http'
 
 export default async function getUser<U extends Record<string, any> = User>(
-  req: NextApiRequest,
+  req: IncomingMessage,
 ): Promise<U | undefined> {
   if (isBrowser()) {
     return handleError(new Error('You cannot use getUser() in a browser envriroment.'), 'libs/getUser()', true)
