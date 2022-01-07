@@ -1,4 +1,4 @@
-import useAuth from 'nexauth/dist/hooks/useAuth'
+import { useAuth } from 'nexauth'
 
 export default function IndexPage() {
   const auth = useAuth()
