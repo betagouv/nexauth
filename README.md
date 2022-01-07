@@ -1,228 +1,39 @@
-# nexauth
+<p align="center">
+  <a href="https://nextjs.org">
+    <img alt="beta.gouv.fr Logo" height="128" src="docs/_media/logo.svg" />
+    <h1 align="center">nexauth</h1>
+  </a>
+</p>
 
-[![License][img-license]][lnk-license]
-[![CI Status][img-github]][lnk-github]
-[![Code Coverage][img-codecov]][lnk-codecov]
-[![NPM Version][img-npm]][lnk-npm]
+<p align="center">
+  <a aria-label="Vercel logo" href="https://beta.gouv.fr">
+    <img src="https://img.shields.io/badge/MADE%20BY%20beta.gouv.fr-fff.svg?style=for-the-badge&color=21304d&labelColor=000&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZGF0YS1uYW1lPSJMYXllciAxIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0ODAgNDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPGRlZnM+CiAgPGNsaXBQYXRoIGlkPSJnIj4KICAgPHJlY3QgeD0iNDgzLjkyIiB5PSIyMjQuNDIiIHdpZHRoPSIxOC42MDYiIGhlaWdodD0iMTYuNTQyIiBmaWxsPSJub25lIiBvcGFjaXR5PSIuMTI3IiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNzAyMzgiIHN0cm9rZS13aWR0aD0iMi4zODMiLz4KICA8L2NsaXBQYXRoPgogIDxjbGlwUGF0aCBpZD0iZiI+CiAgIDxyZWN0IHg9IjQ4My45MiIgeT0iMjI0LjQyIiB3aWR0aD0iMTguNjA2IiBoZWlnaHQ9IjE2LjU0MiIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iLjEyNyIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjcwMjM4IiBzdHJva2Utd2lkdGg9IjIuMzgzIi8+CiAgPC9jbGlwUGF0aD4KICA8Y2xpcFBhdGggaWQ9ImQiPgogICA8cmVjdCB4PSI0ODMuOTIiIHk9IjIyNC40MiIgd2lkdGg9IjE4LjYwNiIgaGVpZ2h0PSIxNi41NDIiIGZpbGw9Im5vbmUiIG9wYWNpdHk9Ii4xMjciIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLW9wYWNpdHk9Ii43MDIzOCIgc3Ryb2tlLXdpZHRoPSIyLjM4MyIvPgogIDwvY2xpcFBhdGg+CiAgPGNsaXBQYXRoIGlkPSJlIj4KICAgPHJlY3QgeD0iNDgzLjkyIiB5PSIyMjQuNDIiIHdpZHRoPSIxOC42MDYiIGhlaWdodD0iMTYuNTQyIiBmaWxsPSJub25lIiBvcGFjaXR5PSIuMTI3IiBzdHJva2U9IiNmZmYiIHN0cm9rZS1vcGFjaXR5PSIuNzAyMzgiIHN0cm9rZS13aWR0aD0iMi4zODMiLz4KICA8L2NsaXBQYXRoPgogIDxjbGlwUGF0aCBpZD0iYyI+CiAgIDxjaXJjbGUgY3g9IjQ2Ny4yNiIgY3k9IjM5MC41MiIgcj0iMjcxLjA4IiBmaWxsPSIjMGYwIiBmaWxsLW9wYWNpdHk9Ii40OTQwNSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMS4wMTI0cHgiLz4KICA8L2NsaXBQYXRoPgogIDxjbGlwUGF0aCBpZD0iYiI+CiAgIDxjaXJjbGUgY3g9IjQ5MS45NCIgY3k9IjM0Mi41IiByPSIxOTguNDciIGZpbGw9IiMwZjAiIGZpbGwtb3BhY2l0eT0iLjQ5NDA1IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIuNzQxMjVweCIvPgogIDwvY2xpcFBhdGg+CiAgPGNsaXBQYXRoIGlkPSJhIj4KICAgPGNpcmNsZSBjeD0iNDkxLjk0IiBjeT0iMzQyLjUiIHI9IjE5OC40NyIgZmlsbD0iIzBmMCIgZmlsbC1vcGFjaXR5PSIuNDk0MDUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9Ii43NDEyNXB4Ii8+CiAgPC9jbGlwUGF0aD4KIDwvZGVmcz4KIDx0aXRsZT5iZXRhLmdvdXYuZnI8L3RpdGxlPgogPGcgdHJhbnNmb3JtPSJtYXRyaXgoLjMxNTY5IDAgMCAuMzE1NjkgLTkyLjY0MyAtNDguMTI0KSI+CiAgPGNpcmNsZSBjeD0iMTA1My43IiBjeT0iOTEyLjY5IiByPSI3NjAuMjUiIGZpbGw9IiNmZmYiIHN0cm9rZS13aWR0aD0iMi45NjMyIi8+CiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMi44MDQ1IDAgMCAyLjgwNDUgLTI1NS42OCAtMTgyLjU0KSIgY2xpcC1wYXRoPSJ1cmwoI2MpIj4KICAgPHBhdGggZD0ibTM2MS42IDU1NC4zN3MxMTMuNTgtMi44NTg4IDE3MS0zMC41M2MzOC42NS0xOC42MjUgNzIuMjYyLTE3Ljk3IDg4LjQ5MSAxMi4xNjUgOC4zMzQ5IDE1LjQ3Ny0yMS4zMTEgNTIuOTY1LTg2LjQ1MSA1Ny4wODUtNjUuMTQgNC4xMi0xNzMuMDQtMzguNzItMTczLjA0LTM4LjcyeiIgY2xpcC1wYXRoPSJub25lIiBvcGFjaXR5PSIuMTY3Ii8+CiAgIDxwYXRoIGQ9Im0zMTQuODMgNTMyLjIxYy0zNS41MDcgNDguMzQtNTUuMDk4IDc1LjY5Mi01NC4zMTQgNzUuMDgyIDMxLjg4OS0yNC44MDMgMTMzLjA3IDkzLjU3MSAyMDAuMjYgOTQuODU0IDc5Ljg3NSAxLjUyNSAyNDMuMzctNTQuNDA4IDIxNS4zMS05Mi4zNThsLTU3LjE5OS03Ny4zNDdzLTU4LjMzNiA2My44MTUtMTk3LjggMTAuODk1YzAgMC4wNC03MC42MzgtMTcuMjM2LTEwNi4yNi0xMS4xMjZ6IiBjbGlwLXBhdGg9Im5vbmUiIGZpbGw9IiNlZWUiLz4KICA8L2c+CiAgPGcgZmlsbD0iI2RkZCIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgPGVsbGlwc2UgY3g9Ijk4OS40MiIgY3k9Ijc5MS43NyIgcng9IjQ0LjYwNiIgcnk9IjQ0LjYwNiIvPgogICA8ZWxsaXBzZSBjeD0iMTEwMS4xIiBjeT0iNDMzLjg2IiByeD0iNjYuMzA1IiByeT0iNjcuNDc1Ii8+CiAgIDxlbGxpcHNlIGN4PSIxMTU1LjMiIGN5PSIxMTAxLjMiIHJ4PSIzMC4wOTgiIHJ5PSIzMC4wOTgiLz4KICAgPGVsbGlwc2UgY3g9IjkzOC41MiIgY3k9IjEyNDcuOSIgcng9IjE4IiByeT0iMTgiLz4KICA8L2c+CiAgPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjcwMjM4IiBzdHJva2Utd2lkdGg9IjMiPgogICA8Y2lyY2xlIHRyYW5zZm9ybT0ibWF0cml4KDIuMDk4NiAwIDAgMi41NDIzIDk3LjM2MSAtMTIwLjMxKSIgY3g9IjQ4NC41MiIgY3k9IjIxOS40MiIgcj0iMTYuNDM0IiBjbGlwLXBhdGg9InVybCgjZykiLz4KICAgPGNpcmNsZSB0cmFuc2Zvcm09Im1hdHJpeCgxLjU4OTYgMCAwIDEuNTg5NiAyMjAuNTkgNDQ5LjA0KSIgY3g9IjQ4NC41MiIgY3k9IjIxOS40MiIgcj0iMTYuNDM0IiBjbGlwLXBhdGg9InVybCgjZikiLz4KICAgPGNpcmNsZSB0cmFuc2Zvcm09Im1hdHJpeCguODg2MjMgMCAwIC44ODYyMyA1MDQuMDkgMTA0OS45KSIgY3g9IjQ4NC41MiIgY3k9IjIxOS40MiIgcj0iMTYuNDM0IiBjbGlwLXBhdGg9InVybCgjZCkiLz4KICAgPGNpcmNsZSB0cmFuc2Zvcm09Im1hdHJpeCgxLjE0MiAwIDAgMS4xNDIgNjAyLjggODUxLjA2KSIgY3g9IjQ4NC41MiIgY3k9IjIxOS40MiIgcj0iMTYuNDM0IiBjbGlwLXBhdGg9InVybCgjZSkiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMy44MzA1IDAgMCAzLjgzMDUgLTgzMC42NiAtNDAxLjM4KSIgY2xpcC1wYXRoPSJ1cmwoI2EpIiBmaWxsPSIjMDAzMTk1Ij4KICAgPHBhdGggZD0ibTQzMy42OSAxNTIuODhjMTIuMTIxLTIuNDA0NSAxOC41MTcgNy4zODI5IDE4LjMyOSAxOS41MjEgMCAwIDIuNTA0OCAxNDUuNjktNi42MDUxIDE3My45OS04LjIxMjQgMjUuNTEtNzguNzcxIDExOS45NS05Mi43MDggMTM4LjQ3LTM4LjIxOS0zNy4zNjItNTkuNzY5LTg4LjU0OS01OS43ODItMTQyIDAuMDE5MS04Ny4zOTcgNTcuMTYtMTY0LjUxIDE0MC43Ny0xODkuOTh6IiBjbGlwLXBhdGg9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgogICA8cGF0aCBkPSJtNDMzLjg0IDE1Mi41MS00MzQuNzQgMC4zNjY3OHYzMzMuMzlsMzUzLjYzLTEuNDM1OHoiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMy44MzA1IDAgMCAzLjgzMDUgLTgzMC42NiAtNDAxLjM4KSIgY2xpcC1wYXRoPSJ1cmwoI2IpIiBmaWxsPSIjZjAwIj4KICAgPHBhdGggZD0ibTU1MC4xMiAxNTIuODFjLTEyLjI3NC0xLjc5MzgtMTguNTE3IDcuMzgyOS0xOC4zMjkgMTkuNTIxIDAgMC0yLjUwNDggMTQ1LjY5IDYuNjA1MSAxNzMuOTkgOC4yMTI0IDI1LjUxIDc4Ljc3MSAxMTkuOTUgOTIuNzA4IDEzOC40NyAzOC4yMTktMzcuMzYyIDU5Ljc2OS04OC41NDkgNTkuNzgyLTE0Mi0wLjAxOTEtODcuMzk3LTU3LjE2LTE2NC41MS0xNDAuNzctMTg5Ljk4eiIgZmlsbC1ydWxlPSJldmVub2RkIi8+CiAgIDxwYXRoIGQ9Im01NDYuNTkgMTUyLjQ0IDQ0MC44NSAwLjM2Njc3djMzMy4zOWwtMzU2LjI5LTEuNDM3M3oiLz4KICA8L2c+CiA8L2c+Cjwvc3ZnPgo=">
+  </a>
+  <a aria-label="NPM version" href="https://www.npmjs.com/package/nexauth">
+    <img alt="" src="https://img.shields.io/npm/v/nexauth?style=for-the-badge&labelColor=000&color=21304d">
+  </a>
+  <a aria-label="License" href="https://github.com/betagouv/nexauth/blob/main/LICENSE">
+    <img alt="" src="https://img.shields.io/github/license/betagouv/nexauth?style=for-the-badge&labelColor=000&color=21304d">
+  </a>
+</p>
 
-Strongly opinionated but dead simple and safe JWT-based authentication for Next.js framework.
+> A dead simple JWT-based authentication library for Next.js framework.
 
 _🗒️ Work and documentation in progress!_
 
----
+## Getting Started
 
-- [Introduction](#introduction)
-- [Get started](#get-started)
-  - [Install](#install)
-  - [Setup development environment](#setup-development-environment)
-  - [Setup production environment](#setup-production-environment)
-- [Tokens](#tokens)
-  - [Access Token](#access-token)
-  - [Refresh Tokens](#refresh-tokens)
-- [Lifecycle](#lifecycle)
-- [Security](#security)
-  - [Automatic Reuse Detection](#automatic-reuse-detection)
-- [Alternatives](#alternatives)
-- [References](#references)
+Visit [https://betagouv.github.io/nexauth/#/install][lnk-install] to get started with nexauth.
+
+## Documentation
+
+Visit [https://betagouv.github.io/nexauth/][lnk-documentation] to view the full documentation.
+
+## Contributing
+
+Please see our [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ---
 
-## Introduction
-
-All tokens are signed (JWS) but **not** encrypted (JWE) JWTs.
-
-Why? Because JWEs are only required when storing sensitive private information over non-secure connections,
-which is something you should **never** do anyway [[1]][lnk-jwt-rfc-privacy].
-
-The signing algorithm uses EdDSA elliptic curve in its Ed448 variant [[2]][lnk-curve448] [[3]][lnk-ed25517-vs-ed448].
-
-The EdDSA key pair is consumed through environment variables, namely:
-
-- `EDDSA_PRIVATE_KEY`: Only available within back-end applications.
-- `NEXT_PUBLIC_EDDSA_PUBLIC_KEY`: Available within both back-end and front-end applications.
-
-## Get started
-
-### Install
-
-```sh
-npm i -E nexauth
-```
-
-or:
-
-```sh
-yarn add -E nexauth
-```
-
-### Setup development environment
-
-At the root of your project, run:
-
-```sh
-npx nexauth init
-```
-
-which will generate and inject both `EDDSA_PRIVATE_KEY` & `NEXT_PUBLIC_EDDSA_PUBLIC_KEY` environment variables
-within your `.env` file.
-
-### Setup production environment
-
-You'll need the same enviroment variables in production but **DON'T USE YOUR LOCAL VALUES IN PRODUCTION**.
-
-Generate a new EdDSA key pair for that, by running:
-
-```sh
-npx nexauth generate
-```
-
-## Tokens
-
-### Access Token
-
-- **Brief:** Allow an application to access an API protected route.
-- **Usage:** Sent via the `Authorization` header within any API request requiring an authentication.
-- **Storage:** It should **NEVER** be stored.
-- **Representation:** `JWS`
-- **Lifetime:** `1200` (= 20 minutes in seconds)
-<!-- - **Algorithm:** `RS256` -->
-- **Payload:**
-
-  ```ts
-  {
-    /** Expiration date */
-    exp: number // Unix time (in seconds)
-    /** Creation date */
-    iat: number // Unix time (in seconds)
-    /** Token CUID */
-    jti: string
-    /** User CUID */
-    uid: string
-    /** Custom non-sensitive user information, ie: */
-    data: {
-      email?: string
-      firstName?: string
-      lastName?: string
-      role?: string
-      scopes?: string[]
-      // ...
-    }
-  }
-  ```
-
-### Refresh Tokens
-
-- **Brief:** ...
-- **Usage:** Sent to `/auth/refresh` within the body of a `POST` request each time the Access Token expires.
-- **Storage:** [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
-- **Representation:** `JWS`
-- **Lifetime:** `1200` (= 20 minutes in seconds)
-- **Payload:**
-
-  ```ts
-  {
-    /** Expiration date */
-    exp: number // Unix time (in seconds)
-    /** Creation date */
-    iat: number // Unix time (in seconds)
-    /** Token CUID */
-    jti: string
-    /** User CUID */
-    uid: string
-    data: {
-      /** Refresh Token Family CUID */
-      familyId: string
-    }
-  }
-  ```
-
-## Lifecycle
-
-```txt
-┌─────┐                                                                  ┌─────┐
-│ APP │                                                                  │ API │
-└──┬──┘                                                                  └──┬──┘
-   │                                                                        │
-   │ POST /api/auth/login                                                   │
-   │ {                                                                      │
-   │   email: "..."                                                         │
-   │   password: "..."                                                      │
-   │ }                                                                      │
- 1 ├───────────────────────────────────────────────────────────────────────►│
-   │                                                                        │
-   │                                   New Access Token + New Refresh Token │
-   │◄───────────────────────────────────────────────────────────────────────┤ 2
-   │                                                                        │
-   │                                                                        │
- 3 ├──┐                                                                     │
-   │  │ Store Refresh Token in Local Storage                                │
-   │◄─┘                                                                     │
-   │                                                                        │
-   │ Send authenticated requests with header:                               │
-   │ {                                                                      │
-   │   Authorization: "Bearer [ACCESS_TOKEN]"                               │
-   │ }                                                                      │
- 4 ├───────────────────────────────────────────────────────────────────────►│
-   │                                                                        │
-   │                                                                        │
-┌──┴────────────────────────────────────────────────────────────────────────┴──┐
-│                         Access Token expires                                 │
-└──┬────────────────────────────────────────────────────────────────────────┬──┘
-   │                                                                        │
-   │ POST /api/auth/refresh                                                 │
-   │ {                                                                      │
-   │   refreshToken: "[REFRESH_TOKEN]"                                      │
-   │ }                                                                      │
-   ├───────────────────────────────────────────────────────────────────────►│
-   │                                                                        │
-   │                                                                        │
-   │                                   New Access Token + New Refresh Token │
-   │◄───────────────────────────────────────────────────────────────────────┤
-   ⁞                                                                        ⁞
-```
-
-## Security
-
-### Automatic Reuse Detection
-
-**nexauth** follows the same principles than [auth0][lnk-automatic-reuse-detection] ones.
-
-![Automatic Reuse Detection - Case 1](docs/automatic-reuse-detection-1.png)
-
-![Automatic Reuse Detection - Case 2](docs/automatic-reuse-detection-2.png)
-
-## Alternatives
-
-**nexauth** is very opinionated for the sake of simplifying authentication covering SSR-generated, SPAs and
-API-based split applications. It's not intented to compete with more largely used authentication libraries as:
-
-- [NextAuth.js](https://next-auth.js.org/)
-- [Passport.js](https://www.passportjs.org/)
-- [auth0](https://auth0.com/)
-- [iron-session](https://github.com/vvo/iron-session)
-
-Don't hesitate to use these libraries instead of **nexauth** if they're a better fit for your use-case.
-
-## References
-
-- [What Are Refresh Tokens and How to Use Them Securely](https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/)
-- [How to select a JOSE / JWT cryptographic algorithm for your application](https://connect2id.com/products/nimbus-jose-jwt/algorithm-selection-guide)
-- [JWTs: Which Signing Algorithm Should I Use?](https://www.scottbrady91.com/jose/jwts-which-signing-algorithm-should-i-use)
-- [Cipher Suites Demystified](https://joehonton.medium.com/cipher-suites-demystified-ada2e97be9c9)
-- [Token Best Practices](https://auth0.com/docs/best-practices/token-best-practices)
-
----
-
-[img-codecov]: https://img.shields.io/codecov/c/github/betagouv/nexauth/main?style=flat-square
-[img-github]: https://img.shields.io/github/workflow/status/betagouv/nexauth/Check/main?style=flat-square
-[img-license]: https://img.shields.io/github/license/betagouv/nexauth?style=flat-square
-[img-npm]: https://img.shields.io/npm/v/nexauth?style=flat-square
-[lnk-codecov]: https://codecov.io/gh/betagouv/nexauth/branch/main
-[lnk-github]: https://github.com/betagouv/nexauth/actions?query=branch%3Amain++
-[lnk-license]: https://github.com/betagouv/nexauth/blob/main/LICENSE
-[lnk-npm]: https://www.npmjs.com/package/nexauth
-
-[lnk-curve448]: https://en.wikipedia.org/wiki/Curve448
-[lnk-ed25517-vs-ed448]: https://crypto.stackexchange.com/a/67468/52638
-[lnk-jwt-rfc-privacy]: https://www.rfc-editor.org/rfc/rfc7519#section-11.2
-[lnk-automatic-reuse-detection]: https://auth0.com/docs/security/tokens/refresh-tokens/refresh-token-rotation#automatic-reuse-detection
+[lnk-documentation]: https://betagouv.github.io/nexauth/
+[lnk-install]: https://betagouv.github.io/nexauth/#install

@@ -1,7 +1,7 @@
 {
   "name": "nexauth",
   "version": "1.0.0-alpha.10",
-  "description": "Strongly opinionated but dead simple and safe JWT-based authentication for Next.js framework.",
+  "description": "A dead simple JWT-based authentication library for Next.js framework.",
   "license": "AGPL-3.0",
   "type": "module",
   "engines": {
@@ -43,6 +43,7 @@
     "build:cli": "tsc -p ./tsconfig.dist.cli.json",
     "dev": "nodemon -e ts,tsx -w ./src -x \"yarn test:e2e:setup && cd ./e2e/with-prisma && yarn build && yarn start\"",
     "dev:cli": "yarn build && node ./dist/commands/index.js",
+    "dev:docs": "docsify serve ./docs",
     "prepare": "husky install",
     "test": "yarn test:lint && yarn test:build && yarn test:unit",
     "test:lint": "eslint --ext js,ts,tsx .",
@@ -79,6 +80,7 @@
     "@types/react": "17.0.38",
     "codecov": "3.8.3",
     "dayjs": "1.10.7",
+    "docsify-cli": "4.4.3",
     "dotenv": "10.0.0",
     "husky": "7.0.4",
     "jest": "27.4.5",
