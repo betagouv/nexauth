@@ -22,3 +22,15 @@ Generate a new EdDSA key pair for that, by running:
 ```sh
 npx nexauth generate
 ```
+
+---
+
+<div style="display: flex; justify-content: space-between;">
+  <a href="/#/install">
+    <img src="https://img.shields.io/badge/«%20Previous%20step%20:%20Install-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
+  </a>
+
+  <a href="/#/setup-api">
+    <img src="https://img.shields.io/badge/Next%20step%20:%20Setup%20API%20»-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
+  </a>
+</div>

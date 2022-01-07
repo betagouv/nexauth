@@ -76,6 +76,30 @@ model User {
 }
 ```
 
+---
+
+<div style="display: flex; justify-content: space-between;">
+  <a href="/#/initialize">
+    <img src="https://img.shields.io/badge/«%20Previous%20step%20:%20Initialize-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
+  </a>
+
+  <a href="/#/setup-application">
+    <img src="https://img.shields.io/badge/Next%20step%20:%20Setup%20Application%20»-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
+  </a>
+</div>
+
 ## Using a custom Adapter
 
 ?> _TODO_ Document this part.
+
+---
+
+<div style="display: flex; justify-content: space-between;">
+  <a href="/#/initialize">
+    <img src="https://img.shields.io/badge/«%20Previous%20step%20:%20Initialize-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
+  </a>
+
+  <a href="/#/setup-application">
+    <img src="https://img.shields.io/badge/Next%20step%20:%20Setup%20Application%20»-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
+  </a>
+</div>
