@@ -22,8 +22,6 @@
 
 > A dead simple JWT-based authentication library for Next.js framework.
 
-⚠️ _Work and documentation in progress!_
-
 ## Getting Started
 
 Visit [https://betagouv.github.io/nexauth/#/install][lnk-install] to get started with nexauth.
