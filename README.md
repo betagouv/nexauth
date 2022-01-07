@@ -32,7 +32,7 @@ Visit [https://betagouv.github.io/nexauth/][lnk-documentation] to view the full 
 
 ## Examples
 
-Explore [/examples directory][lnk-documentation] to get integration samples.
+Explore [/examples][lnk-examples] directory to get integration samples.
 
 ## Contributing
 
