@@ -19,7 +19,7 @@ export default function MetiersNumeriquesApp({ Component, pageProps }) {
         />
       </Head>
 
-      <AuthProvider Loader={Loader} privatePaths={PRIVATE_PATHS} SignInModal={SignInModal}>
+      <AuthProvider Loader={Loader} privatePaths={PRIVATE_PATHS} SignInDialog={SignInModal}>
         <Header />
 
         <main className="container">

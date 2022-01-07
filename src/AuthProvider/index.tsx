@@ -30,11 +30,11 @@ const INITIAL_STATE: AuthState = {
 
 type AuthProviderProps = {
   Loader: any
-  SignInModal: any
+  SignInDialog: any
   children: ReactNode
   privatePaths: Array<RegExp | string>
 }
-const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, privatePaths, SignInModal }) => {
+const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, privatePaths, SignInDialog }) => {
   const [state, setState] = React.useState<AuthState>(INITIAL_STATE)
   const [user, setUser] = React.useState<User>()
   const router = useRouter()
@@ -279,7 +279,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
   if (mustLogin) {
     return (
       <Context.Provider value={providerValue}>
-        <SignInModal />
+        <SignInDialog />
       </Context.Provider>
     )
   }
