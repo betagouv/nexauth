@@ -10,4 +10,4 @@
 - One-for-all architectures
 
 [GitHub](https://github.com/betagouv/nexauth/)
-[Getting Started](#nexauth)
+[Getting Started](/install)
