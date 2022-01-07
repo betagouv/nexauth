@@ -32,6 +32,10 @@ Visit [https://betagouv.github.io/nexauth/#/install][lnk-install] to get started
 
 Visit [https://betagouv.github.io/nexauth/][lnk-documentation] to view the full documentation.
 
+## Examples
+
+Explore [/examples directory][lnk-documentation] to get integration samples.
+
 ## Contributing
 
 Please see our [CONTRIBUTING.md](/CONTRIBUTING.md).
@@ -39,4 +43,5 @@ Please see our [CONTRIBUTING.md](/CONTRIBUTING.md).
 ---
 
 [lnk-documentation]: https://betagouv.github.io/nexauth/
+[lnk-examples]: https://github.com/betagouv/nexauth/tree/main/examples
 [lnk-install]: https://betagouv.github.io/nexauth/#install

@@ -1,4 +1,4 @@
-# Automatic Reuse Detection
+# Automatic reuse detection
 
 **nexauth** follows the same principles than **auth0** ones [<sup>[1]</sup>][lnk-automatic-reuse-detection].
 
