@@ -24,13 +24,9 @@ npx nexauth generate
 ```
 
 ---
+ 
+[![License][img-prev]](/install)
+[![License][img-next]](/setup-api)
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="/#/install">
-    <img src="https://img.shields.io/badge/«%20Previous%20step%20:%20Install-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
-  </a>
-
-  <a href="/#/setup-api">
-    <img src="https://img.shields.io/badge/Next%20step%20:%20Setup%20API%20»-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
-  </a>
-</div>
+[img-prev]: https://img.shields.io/badge/«%20Previous%20step%20:%20Install-fff.svg?style=for-the-badge&color=21304d&labelColor=000
+[img-next]: https://img.shields.io/badge/Next%20step%20:%20Setup%20API%20»-fff.svg?style=for-the-badge&color=21304d&labelColor=000

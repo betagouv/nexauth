@@ -33,14 +33,9 @@ You can see a full example of `<Header />`, `<Loader />` & `<SignInDialog />` co
 
 ---
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="/#/setup-api">
-    <img src="https://img.shields.io/badge/«%20Previous%20step%20:%20Setup%20API-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
-  </a>
+[![License][img-prev]](/setup-api)
+[![License][img-next]](/access-authenticated-user)
 
-  <a href="/#/access-authenticated-user">
-    <img src="https://img.shields.io/badge/Next%20step%20:%20Access%20Authenticated%20User%20»-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
-  </a>
-</div>
-
+[img-prev]: https://img.shields.io/badge/«%20Previous%20step%20:%20Setup%20API-fff.svg?style=for-the-badge&color=21304d&labelColor=000
+[img-next]: https://img.shields.io/badge/Next%20step%20:%20Access%20Authenticated%20User%20»-fff.svg?style=for-the-badge&color=21304d&labelColor=000
 [lnk-example]: https://github.com/betagouv/nexauth/tree/main/examples/with-prisma/pages/_app.tsx

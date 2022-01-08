@@ -54,10 +54,6 @@ export default function MyPageOrComponent() {
 
 ---
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="/#/setup-application">
-    <img src="https://img.shields.io/badge/«%20Previous%20step%20:%20Setup%20Application-fff.svg?style=for-the-badge&color=21304d&labelColor=000" />
-  </a>
+[![License][img-prev]](/setup-application)
 
-  <span></span>
-</div>
+[img-prev]: https://img.shields.io/badge/«%20Previous%20step%20:%20Setup%20Application-fff.svg?style=for-the-badge&color=21304d&labelColor=000
