@@ -16,7 +16,7 @@
     "skipLibCheck": true,
     "strict": false,
     "strictNullChecks": true,
-    "target": "ESNext"
+    "target": "ES2018"
   },
   "exclude": ["dist/*", "examples/*", "node_modules/*"],
   "include": ["**/*.js", "**/*.ts", "**/*.tsx", "dist/commands/index.mjs"]
