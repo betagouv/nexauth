@@ -1,6 +1,6 @@
 {
   "name": "nexauth",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0",
   "description": "A dead simple JWT-based authentication library for Next.js framework.",
   "license": "AGPL-3.0",
   "type": "module",
