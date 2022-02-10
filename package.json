@@ -4,39 +4,15 @@
   "description": "A dead simple JWT-based authentication library for Next.js framework.",
   "license": "AGPL-3.0",
   "type": "module",
-  "engines": {
-    "node": ">=16"
-  },
+  "sideEffects": false,
   "bin": {
     "nexauth": "./dist/commands/index.js"
   },
   "main": "./dist/index.js",
+  "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "_exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./AuthProvider": {
-      "import": "./dist/AuthProvider/index.js",
-      "types": "./dist/AuthProvider/index.d.ts"
-    },
-    "./privateJwt": {
-      "import": "./dist/libs/privateJwt.js",
-      "types": "./dist/libs/privateJwt.d.ts"
-    },
-    "./publicJwt": {
-      "import": "./dist/libs/publicJwt.js",
-      "types": "./dist/libs/publicJwt.d.ts"
-    },
-    "./PrismaAdapter": {
-      "import": "./dist/adapters/PrismaAdapter/index.js",
-      "types": "./dist/adapters/PrismaAdapter/index.d.ts"
-    },
-    "./useAuth": {
-      "import": "./dist/hooks/useAuth.js",
-      "types": "./dist/hooks/useAuth.d.ts"
-    }
+  "engines": {
+    "node": ">=16"
   },
   "scripts": {
     "build": "rm -Rf ./dist && tsc -p ./tsconfig.dist.json",
