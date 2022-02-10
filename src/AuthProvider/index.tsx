@@ -9,7 +9,7 @@ import handleError from '../helpers/handleError.js'
 import isBrowser from '../helpers/isBrowser.js'
 import matchOneOfPatterns from '../helpers/matchOneOfPatterns.js'
 import useIsMounted from '../hooks/useIsMounted.js'
-import jwt from '../libs/jwt.js'
+import jwtClient from '../libs/jwtClient.js'
 import Context from './Context.js'
 
 import type ApiResponse from '../libs/ApiResponse'
@@ -64,7 +64,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
             }>
           >()
 
-        const accessTokenPayload = jwt.parse<AccessTokenPayload>(tokenPair.accessToken)
+        const accessTokenPayload = jwtClient.parse<AccessTokenPayload>(tokenPair.accessToken)
         if (accessTokenPayload === undefined) {
           throw new Error('`accessToken` is unparseable. This should never happen.')
         }
@@ -173,7 +173,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
           })
           .json<ApiResponse>()
 
-        const accessTokenPayload = jwt.parse<AccessTokenPayload>(tokenPair.accessToken)
+        const accessTokenPayload = jwtClient.parse<AccessTokenPayload>(tokenPair.accessToken)
         if (accessTokenPayload === undefined) {
           throw new Error('`accessToken` is unparseable. This should never happen.')
         }

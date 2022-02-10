@@ -12,7 +12,7 @@ import type { TokenPayload } from '../types'
 import type { JWTHeaderParameters, KeyLike } from 'jose'
 
 /**
- * Private JWT library for node environment.
+ * JWT Node.js library.
  */
 class Jwt {
   #algorithm: string
