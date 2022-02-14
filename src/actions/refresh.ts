@@ -4,6 +4,7 @@ import ß from 'bhala'
 import cuid from 'cuid'
 import { omit, pick, prop, sortBy } from 'ramda'
 
+import { ACCESS_TOKEN_EXPIRATION_IN_SECONDS, REFRESH_TOKEN_EXPIRATION_IN_SECONDS } from '../constants.js'
 import ApiError from '../libs/ApiError.js'
 import ApiResponse from '../libs/ApiResponse.js'
 import jwt from '../libs/jwt.js'
@@ -12,8 +13,6 @@ import type { Adapter, NexauthConfig, NexauthOptions, RefreshTokenPayload, UserW
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const { CI } = process.env
-const ACCESS_TOKEN_EXPIRATION_IN_SECONDS = 20 * 60
-const REFRESH_TOKEN_EXPIRATION_IN_SECONDS = 30 * 24 * 60 * 60
 
 export const excludePassword = omit(['password'])
 
