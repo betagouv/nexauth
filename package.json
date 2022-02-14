@@ -29,9 +29,7 @@
     "test:type": "tsc",
     "test:unit": "jest --config=./config/jest.config.js",
     "test:unit:setup": "yarn dev:cli init",
-    "test:unit:watch": "yarn test:unit --watch",
-    "preversion": "yarn build",
-    "postversion": "npm publish && git push origin main --tags"
+    "test:unit:watch": "yarn test:unit --watch"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
@@ -47,6 +45,7 @@
     "@ivangabriele/commitlint-config": "1.0.2",
     "@ivangabriele/eslint-config-typescript-react": "2.1.4",
     "@ivangabriele/prettier-config": "2.0.2",
+    "@ivangabriele/semantic-release-config-base": "2.0.2",
     "@playwright/test": "1.17.1",
     "@testing-library/react-hooks": "7.0.2",
     "@types/bcryptjs": "2.4.2",
@@ -78,6 +77,9 @@
   "prettier": "@ivangabriele/prettier-config",
   "publishConfig": {
     "access": "public"
+  },
+  "release": {
+    "extends": "@ivangabriele/semantic-release-config-base"
   },
   "bugs": {
     "url": "https://github.com/betagouv/nexauth/issues"
