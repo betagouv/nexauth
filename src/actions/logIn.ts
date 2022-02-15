@@ -10,7 +10,14 @@ import ApiError from '../libs/ApiError.js'
 import ApiResponse from '../libs/ApiResponse.js'
 import jwt from '../libs/jwt.js'
 
-import type { Adapter, NexauthConfig, NexauthOptions, RefreshTokenPayload, UserWithPassword } from '../types'
+import type {
+  AccessTokenPayload,
+  Adapter,
+  NexauthConfig,
+  NexauthOptions,
+  RefreshTokenPayload,
+  UserWithPassword,
+} from '../types'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const { CI } = process.env
@@ -81,6 +88,7 @@ export default async function logIn<U extends UserWithPassword = UserWithPasswor
 
     const accessTokenPayloadUser = pick(accessTokenPublicUserProps)(user)
     const accessTokenValue = await jwt.sign(userId, ACCESS_TOKEN_EXPIRATION_IN_SECONDS, accessTokenPayloadUser)
+    const accessTokenPayload = await jwt.verify<AccessTokenPayload>(accessTokenValue)
 
     const refreshTokenValue = await jwt.sign(userId, REFRESH_TOKEN_EXPIRATION_IN_SECONDS)
     const refreshTokenPayload = await jwt.verify<RefreshTokenPayload>(refreshTokenValue)
@@ -102,7 +110,9 @@ export default async function logIn<U extends UserWithPassword = UserWithPasswor
     res.status(200).json(
       new ApiResponse({
         accessToken: accessTokenValue,
+        accessTokenPayload,
         refreshToken: refreshTokenValue,
+        refreshTokenPayload,
       }),
     )
   } catch (err) {

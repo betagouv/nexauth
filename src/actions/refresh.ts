@@ -9,7 +9,14 @@ import ApiError from '../libs/ApiError.js'
 import ApiResponse from '../libs/ApiResponse.js'
 import jwt from '../libs/jwt.js'
 
-import type { Adapter, NexauthConfig, NexauthOptions, RefreshTokenPayload, UserWithPassword } from '../types'
+import type {
+  AccessTokenPayload,
+  Adapter,
+  NexauthConfig,
+  NexauthOptions,
+  RefreshTokenPayload,
+  UserWithPassword,
+} from '../types'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const { CI } = process.env
@@ -88,19 +95,20 @@ export default async function refresh<U extends UserWithPassword = UserWithPassw
 
     const newAccessTokenPayloadUser = pick(accessTokenPublicUserProps)(user)
     const newAccessTokenValue = await jwt.sign(userId, ACCESS_TOKEN_EXPIRATION_IN_SECONDS, newAccessTokenPayloadUser)
+    const newAccessTokenPayload = await jwt.verify<AccessTokenPayload>(newAccessTokenValue)
     const newRefreshTokenValue = await jwt.sign(userId, REFRESH_TOKEN_EXPIRATION_IN_SECONDS)
-    const newRefreshTokenData = await jwt.verify<RefreshTokenPayload>(newRefreshTokenValue)
-    if (newRefreshTokenData === undefined) {
+    const newRefreshTokenPayload = await jwt.verify<RefreshTokenPayload>(newRefreshTokenValue)
+    if (newRefreshTokenPayload === undefined) {
       throw new Error('`newRefreshTokenValue` is unverifiable. This should never happen.')
     }
 
-    const expiredAt = new Date(newRefreshTokenData.exp * 1000)
+    const expiredAt = new Date(newRefreshTokenPayload.exp * 1000)
     const familyId = cuid()
 
     await adapter.refreshToken.create({
       expiredAt,
       familyId,
-      id: newRefreshTokenData.jti,
+      id: newRefreshTokenPayload.jti,
       ip,
       userId,
       value: newRefreshTokenValue,
@@ -109,7 +117,9 @@ export default async function refresh<U extends UserWithPassword = UserWithPassw
     res.status(200).json(
       new ApiResponse({
         accessToken: newAccessTokenValue,
+        accessTokenPayload: newAccessTokenPayload,
         refreshToken: newRefreshTokenValue,
+        refreshTokenPayload: newRefreshTokenPayload,
       }),
     )
   } catch (err) {
