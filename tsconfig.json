@@ -7,7 +7,7 @@
     "jsx": "react",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "noEmit": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
@@ -19,5 +19,5 @@
     "target": "ES2018"
   },
   "exclude": ["dist/*", "examples/*", "node_modules/*"],
-  "include": ["**/*.js", "**/*.ts", "**/*.tsx", "dist/commands/index.mjs"]
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx"]
 }

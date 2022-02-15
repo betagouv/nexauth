@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 import crypto from 'crypto'
 import { promises as fs } from 'fs'
 import path from 'path'
@@ -20,25 +20,25 @@ export default async function init(): Promise<void> {
 
     const gitignorePath = path.join(rootPath, '.gitignore')
     if (!(await isFile(gitignorePath))) {
-      ß.warn(`${SCOPE} \`./.gitignore\` file does not exist.`)
+      B.warn(`${SCOPE} \`./.gitignore\` file does not exist.`)
 
-      ß.info(`${SCOPE} Generating a new \`./.gitignore\` file to ignore nexauth key pair files…`)
+      B.info(`${SCOPE} Generating a new \`./.gitignore\` file to ignore nexauth key pair files…`)
       await fs.writeFile(gitignorePath, GITIGNORE_DOTENV_SOURCE, 'utf-8')
     } else {
       const gitignoreSource = await fs.readFile(gitignorePath, 'utf-8')
       const gitignoreGlobPatterns = convertSourceToGlobPatterns(gitignoreSource)
 
       if (!gitignoreGlobPatterns.includes('.env') && !gitignoreGlobPatterns.includes('/.env')) {
-        ß.info(`${SCOPE} Updating \`./.gitignore\` file to ignore ".env" file…`)
+        B.info(`${SCOPE} Updating \`./.gitignore\` file to ignore ".env" file…`)
         await fs.writeFile(gitignorePath, `${gitignoreSource.trim()}\n\n${GITIGNORE_DOTENV_SOURCE}`, 'utf-8')
       }
     }
 
     const dotEnvPath = path.join(rootPath, '.env')
     if (!(await isFile(dotEnvPath))) {
-      ß.warn(`${SCOPE} \`./.env\` file does not exist.`)
+      B.warn(`${SCOPE} \`./.env\` file does not exist.`)
 
-      ß.info(`${SCOPE} Generating a new \`./.env\` file…`)
+      B.info(`${SCOPE} Generating a new \`./.env\` file…`)
       await fs.writeFile(dotEnvPath, '', 'utf-8')
     }
 
@@ -78,7 +78,7 @@ export default async function init(): Promise<void> {
       .join('\n')
       .trim()
 
-    ß.info(
+    B.info(
       `${SCOPE} Updating \`./.env\` file to add generated EDDSA_PRIVATE_KEY & NEXT_PUBLIC_EDDSA_PUBLIC_KEY variables…`,
     )
     await fs.writeFile(dotEnvPath, `${dotEnvSourceWithEddsaKeyPair}\n`, 'utf-8')
