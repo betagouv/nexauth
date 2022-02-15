@@ -22,22 +22,22 @@
   "typesVersions": {
     "*": {
       "AuthProvider": [
-        "./dist/AuthProvider/index.d.ts"
+        "dist/AuthProvider/index.d.ts"
       ],
       "getUser": [
-        "./dist/libs/getUser.d.ts"
+        "dist/libs/getUser.d.ts"
       ],
       "jwt": [
-        "./dist/libs/jwt.d.ts"
+        "dist/libs/jwt.d.ts"
       ],
       "Nexauth": [
-        "./dist/Nexauth.d.ts"
+        "dist/Nexauth.d.ts"
       ],
       "PrismaAdapter": [
-        "./dist/adapters/PrismaAdapter.d.ts"
+        "dist/adapters/PrismaAdapter.d.ts"
       ],
       "useAuth": [
-        "./dist/hooks/useAuth.d.ts"
+        "dist/hooks/useAuth.d.ts"
       ]
     }
   },
