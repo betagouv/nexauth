@@ -149,7 +149,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
       }
     }
 
-    async function refresh(): Promise<void> {
+    async function refresh(): Promise<string | null> {
       try {
         if (!isBrowser()) {
           throw new Error('refresh() must be called within a browser environment.')
@@ -162,7 +162,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
             isLoading: false,
           })
 
-          return
+          return null
         }
 
         const { data: tokenPair } = await ky
@@ -188,6 +188,8 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
             isLoading: false,
           })
         }
+
+        return tokenPair.accessToken
       } catch (err) {
         if (err instanceof HTTPError) {
           window.localStorage.removeItem('NEXAUTH_REFRESH_TOKEN')
@@ -199,10 +201,12 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
             })
           }
 
-          return
+          return null
         }
 
         handleError(err, 'AuthProvider.refresh()')
+
+        return null
       }
     }
 

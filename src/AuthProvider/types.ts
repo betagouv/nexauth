@@ -6,7 +6,7 @@ import type { User } from '../types'
 export type AuthContext<U extends Record<string, any> = User> = {
   logIn: (email: string, password: string) => Promise<AuthLogInSuccess | AuthLogInError>
   logOut: AuthLogOutFunction
-  refresh: () => Promise<void>
+  refresh: () => Promise<string | null>
   signUp: <U extends Record<string, any> = User>(newUserData: U) => Promise<AuthSignUpSuccess<U> | AuthSignUpError<U>>
   state: AuthState
   user?: U
