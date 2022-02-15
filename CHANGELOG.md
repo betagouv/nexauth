@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/betagouv/nexauth/compare/v1.5.0...v1.5.1) (2022-02-15)
+
+
+### Bug Fixes
+
+* revert wrongly minor-versioned breaking changes ([7ab2c4b](https://github.com/betagouv/nexauth/commit/7ab2c4b7a38eb3b30dcd1b116c83dd50fc26f38d))
+
 ## [1.4.1](https://github.com/betagouv/nexauth/compare/v1.4.0...v1.4.1) (2022-02-15)
 
 
