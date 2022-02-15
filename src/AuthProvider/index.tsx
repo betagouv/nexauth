@@ -11,11 +11,10 @@ import handleError from '../helpers/handleError.js'
 import isBrowser from '../helpers/isBrowser.js'
 import matchOneOfPatterns from '../helpers/matchOneOfPatterns.js'
 import useIsMounted from '../hooks/useIsMounted.js'
-import jwtClient from '../libs/jwtClient.js'
 import Context from './Context.js'
 
 import type ApiResponse from '../libs/ApiResponse'
-import type { AccessTokenPayload, User } from '../types'
+import type { AccessTokenPayload, RefreshTokenPayload, User } from '../types'
 import type {
   AuthContext,
   AuthLogInError,
@@ -54,7 +53,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
           throw new Error('logIn() must be called within a browser environment.')
         }
 
-        const { data: tokenPair } = await ky
+        const { data: tokenPairWithPayload } = await ky
           .post('/api/auth/login', {
             json: {
               email,
@@ -64,22 +63,19 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
           .json<
             ApiResponse<{
               accessToken: string
+              accessTokenPayload: AccessTokenPayload
               refreshToken: string
+              refreshTokenPayload: RefreshTokenPayload
             }>
           >()
 
-        const accessTokenPayload = jwtClient.parse<AccessTokenPayload>(tokenPair.accessToken)
-        if (accessTokenPayload === undefined) {
-          throw new Error('`accessToken` is unparseable. This should never happen.')
-        }
-
-        window.localStorage.setItem('NEXAUTH_REFRESH_TOKEN', tokenPair.refreshToken)
-        $accessTokenExpirationTimestamp.current = accessTokenPayload.exp
+        window.localStorage.setItem('NEXAUTH_REFRESH_TOKEN', tokenPairWithPayload.refreshToken)
+        $accessTokenExpirationTimestamp.current = tokenPairWithPayload.accessTokenPayload.exp
 
         if (isMounted()) {
-          setUser(accessTokenPayload.data)
+          setUser(tokenPairWithPayload.accessTokenPayload.data)
           setState({
-            accessToken: tokenPair.accessToken,
+            accessToken: tokenPairWithPayload.accessToken,
             isAuthenticated: true,
             isLoading: false,
           })
@@ -170,32 +166,34 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
           return null
         }
 
-        const { data: tokenPair } = await ky
+        const { data: tokenPairWithPayload } = await ky
           .post('/api/auth/refresh', {
             json: {
               refreshToken,
             },
           })
-          .json<ApiResponse>()
+          .json<
+            ApiResponse<{
+              accessToken: string
+              accessTokenPayload: AccessTokenPayload
+              refreshToken: string
+              refreshTokenPayload: RefreshTokenPayload
+            }>
+          >()
 
-        const accessTokenPayload = jwtClient.parse<AccessTokenPayload>(tokenPair.accessToken)
-        if (accessTokenPayload === undefined) {
-          throw new Error('`accessToken` is unparseable. This should never happen.')
-        }
-
-        window.localStorage.setItem('NEXAUTH_REFRESH_TOKEN', tokenPair.refreshToken)
-        $accessTokenExpirationTimestamp.current = accessTokenPayload.exp
+        window.localStorage.setItem('NEXAUTH_REFRESH_TOKEN', tokenPairWithPayload.refreshToken)
+        $accessTokenExpirationTimestamp.current = tokenPairWithPayload.accessTokenPayload.exp
 
         if (isMounted()) {
-          setUser(accessTokenPayload.data)
+          setUser(tokenPairWithPayload.accessTokenPayload.data)
           setState({
-            accessToken: tokenPair.accessToken,
+            accessToken: tokenPairWithPayload.accessToken,
             isAuthenticated: true,
             isLoading: false,
           })
         }
 
-        return tokenPair.accessToken
+        return tokenPairWithPayload.accessToken
       } catch (err) {
         if (err instanceof HTTPError) {
           window.localStorage.removeItem('NEXAUTH_REFRESH_TOKEN')
