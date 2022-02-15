@@ -3,7 +3,7 @@
 Create or edit your `pages/_app.tsx` (or `.ts`, `.jsx`, `.js`) page:
 
 ```tsx
-import { AuthProvider } from 'nexauth'
+import { AuthProvider } from 'nexauth/client'
 
 import Header from 'path/to/your/Header/component'
 import Loader from 'path/to/your/Loader/component'
