@@ -111,7 +111,10 @@
     "access": "public"
   },
   "release": {
-    "extends": "@ivangabriele/semantic-release-config-base"
+    "extends": "@ivangabriele/semantic-release-config-base",
+    "branches": [
+      "v1"
+    ]
   },
   "bugs": {
     "url": "https://github.com/betagouv/nexauth/issues"
