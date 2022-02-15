@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 import bcryptjs from 'bcryptjs'
-import ß from 'bhala'
+import { B } from 'bhala'
 import cuid from 'cuid'
 import { omit, pick } from 'ramda'
 
@@ -116,7 +116,7 @@ export default async function logIn<U extends UserWithPassword = UserWithPasswor
       }),
     )
   } catch (err) {
-    ß.error(String(err))
+    B.error(String(err))
     console.error(err)
 
     if (CI && err instanceof Error) {

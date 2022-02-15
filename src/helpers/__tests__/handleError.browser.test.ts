@@ -2,23 +2,23 @@
  * @jest-environment jsdom
  */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 
 import handleError from '../handleError'
 
 describe('helpers/handleError() [BROWSER]', () => {
-  const bhalaError = ß.error
+  const bhalaError = B.error
   const consoleError = console.error
   const processExit = process.exit
 
   beforeAll(() => {
-    ß.error = jest.fn()
+    B.error = jest.fn()
     console.error = jest.fn()
     process.exit = jest.fn() as never
   })
 
   afterAll(() => {
-    ß.error = bhalaError
+    B.error = bhalaError
     console.error = consoleError
     process.exit = processExit
   })

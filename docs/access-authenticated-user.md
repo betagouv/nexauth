@@ -39,7 +39,7 @@ public payload):
 `useAuth().user` is `undefined` when not authenticated.
 
 ```tsx
-import { useAuth } from 'nexauth'
+import { useAuth } from 'nexauth/client'
 
 export default function MyPageOrComponent() {
   const auth = useAuth()

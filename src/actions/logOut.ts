@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 
 import ApiError from '../libs/ApiError.js'
 import jwt from '../libs/jwt.js'
@@ -41,7 +41,7 @@ export default async function logOut(
 
     res.status(204).end()
   } catch (err) {
-    ß.error(String(err))
+    B.error(String(err))
     console.error(err)
 
     if (CI && err instanceof Error) {

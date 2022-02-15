@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { test, expect } from '@playwright/test'
-import ß from 'bhala'
+import { B } from 'bhala'
 
 const USER_EMAIL = 'doris@sea.com'
 const USER_PASSWORD = 'test'
@@ -19,7 +19,7 @@ test.describe('User Auth Flow', () => {
 
   test('Sign Up, Log In & Log Out', async ({ page }) => {
     page.on('console', message => {
-      ß.log(`${message.type()} -`, message.text())
+      B.log(`${message.type()} -`, message.text())
     })
 
     await page.goto('http://localhost:3000')
@@ -60,7 +60,7 @@ test.describe('User Auth Flow', () => {
 
   test('Log In & Log Out', async ({ page }) => {
     page.on('console', message => {
-      ß.log(`${message.type()} -`, message.text())
+      B.log(`${message.type()} -`, message.text())
     })
 
     await page.goto('http://localhost:3000')

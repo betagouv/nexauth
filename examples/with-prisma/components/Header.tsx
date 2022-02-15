@@ -1,4 +1,4 @@
-import { useAuth } from 'nexauth'
+import { useAuth } from 'nexauth/client'
 import Link from 'next/link'
 import { useState } from 'react'
 
