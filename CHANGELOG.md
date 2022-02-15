@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/betagouv/nexauth/compare/v1.4.1...v2.0.0) (2022-02-15)
+
+
+### Build System
+
+* split and pre-bundle client, CLI and server code ([#27](https://github.com/betagouv/nexauth/issues/27)) ([fe7a5d4](https://github.com/betagouv/nexauth/commit/fe7a5d422411148e95ea9bf5c24a92db22d5b56f))
+
+
+### BREAKING CHANGES
+
+* client exports must now be called via 'nexauth/client'.
+
+This will dramatically improve the final size of bundled code.
+
 ## [1.4.1](https://github.com/betagouv/nexauth/compare/v1.4.0...v1.4.1) (2022-02-15)
 
 
