@@ -9,8 +9,38 @@
     "nexauth": "./dist/commands/index.js"
   },
   "main": "./dist/index.js",
-  "exports": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./AuthProvider": "./dist/AuthProvider/index.js",
+    "./getUser": "./dist/libs/getUser.js",
+    "./jwt": "./dist/libs/jwt.js",
+    "./Nexauth": "./dist/Nexauth.js",
+    "./PrismaAdapter": "./dist/adapters/PrismaAdapter.js",
+    "./useAuth": "./dist/hooks/useAuth.js"
+  },
   "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "AuthProvider": [
+        "./dist/AuthProvider/index.d.ts"
+      ],
+      "getUser": [
+        "./dist/libs/getUser.d.ts"
+      ],
+      "jwt": [
+        "./dist/libs/jwt.d.ts"
+      ],
+      "Nexauth": [
+        "./dist/Nexauth.d.ts"
+      ],
+      "PrismaAdapter": [
+        "./dist/adapters/PrismaAdapter.d.ts"
+      ],
+      "useAuth": [
+        "./dist/hooks/useAuth.d.ts"
+      ]
+    }
+  },
   "engines": {
     "node": ">=16"
   },
