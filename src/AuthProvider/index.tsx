@@ -299,7 +299,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
   }, [state.isLoading])
 
   React.useEffect(() => {
-    providerValue.refresh()
+    watchAccessTokenExpiration()
   }, [$accessTokenExpirationTimestamp.current])
 
   if (isPrivatePath && state.isLoading) {
