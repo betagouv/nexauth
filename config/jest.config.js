@@ -21,4 +21,5 @@ export default {
   setupFiles: ['dotenv/config'],
   setupFilesAfterEnv: ['<rootDir>/config/jest.setup.js'],
   testMatch: ['<rootDir>/src/**/*.test.ts'],
+  transformIgnorePatterns: ['/node_modules/(?!bhala)'],
 }

@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 import clipboardy from 'clipboardy'
 import crypto from 'crypto'
 
@@ -45,7 +45,7 @@ export default async function generate(): Promise<void> {
     // eslint-disable-next-line no-console
     console.log(text)
 
-    ß.warn('NEVER PASTE, SAVE OR SHARE THE EDDSA_PRIVATE_KEY!!!\n')
+    B.warn('NEVER PASTE, SAVE OR SHARE THE EDDSA_PRIVATE_KEY!!!\n')
 
     process.exit()
   } catch (err) {

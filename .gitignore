@@ -137,4 +137,5 @@ dist
 /test-results
 
 /examples/*/.gitignore
+/stats.html
 /test-results.zip

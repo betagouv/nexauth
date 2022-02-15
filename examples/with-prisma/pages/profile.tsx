@@ -1,4 +1,4 @@
-import { useAuth } from 'nexauth'
+import { useAuth } from 'nexauth/client'
 
 export default function IndexPage() {
   const auth = useAuth()

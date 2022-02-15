@@ -1,4 +1,4 @@
-import { AuthProvider } from 'nexauth'
+import { AuthProvider } from 'nexauth/client'
 import Head from 'next/head'
 
 import Header from '../components/Header'

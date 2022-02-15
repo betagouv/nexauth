@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 import { omit, pick } from 'ramda'
 
 import encrypt from '../helpers/encrypt.js'
@@ -74,7 +74,7 @@ export default async function signUp<U extends UserWithPassword = UserWithPasswo
 
     res.status(201).json(new ApiResponse(newUserWithoutPassword))
   } catch (err) {
-    ß.error(String(err))
+    B.error(String(err))
     console.error(err)
 
     if (CI && err instanceof Error) {

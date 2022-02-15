@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 
-import { NexauthError, useAuth } from 'nexauth'
+import { NexauthError, useAuth } from 'nexauth/client'
 import { MutableRefObject, useRef, useState } from 'react'
 
 export const SIGN_IN_MODAL_TYPE = {

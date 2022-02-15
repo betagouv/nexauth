@@ -2,11 +2,11 @@
 
 /* eslint-env node */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 
-import generate from './generate.js'
-import help from './help.js'
-import init from './init.js'
+import generate from './commands/generate.js'
+import help from './commands/help.js'
+import init from './commands/init.js'
 
 const COMMANDS = ['help', 'init', 'generate']
 
@@ -14,7 +14,7 @@ const [, , command] = process.argv
 
 if (typeof command !== 'string' || !COMMANDS.includes(command)) {
   if (typeof command === 'string' && !COMMANDS.includes(command)) {
-    ß.error(`Unknown command "${command}"`)
+    B.error(`Unknown command "${command}"`)
   }
 
   help()
