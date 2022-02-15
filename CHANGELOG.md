@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/betagouv/nexauth/compare/v1.2.0...v1.3.0) (2022-02-15)
+
+
+### Features
+
+* add access token auto-refresh before expiration ([#16](https://github.com/betagouv/nexauth/issues/16)) ([ad05853](https://github.com/betagouv/nexauth/commit/ad058532be31c4a0cd18119287e5924f5d3657a1))
+
 # [1.2.0](https://github.com/betagouv/nexauth/compare/v1.1.0...v1.2.0) (2022-02-15)
 
 
