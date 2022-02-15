@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/betagouv/nexauth/compare/v1.4.1...v1.5.0) (2022-02-15)
+
+
+### Features
+
+* split and pre-bundle client, CLI and server code ([#27](https://github.com/betagouv/nexauth/issues/27)) ([dcf2c0b](https://github.com/betagouv/nexauth/commit/dcf2c0b952ed1d9c6ffc5dbf750ce2473e2de026))
+
 ## [1.4.1](https://github.com/betagouv/nexauth/compare/v1.4.0...v1.4.1) (2022-02-15)
 
 
