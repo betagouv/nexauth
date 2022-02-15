@@ -5,6 +5,7 @@ import { useRouter } from 'next/router.js'
 import React from 'react'
 
 import { NexauthError } from '../constants.js'
+import getUnixTime from '../helpers/getUnixTime.js'
 import handleError from '../helpers/handleError.js'
 import isBrowser from '../helpers/isBrowser.js'
 import matchOneOfPatterns from '../helpers/matchOneOfPatterns.js'
@@ -35,6 +36,8 @@ type AuthProviderProps = {
   privatePaths: Array<RegExp | string>
 }
 const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, privatePaths, SignInDialog }) => {
+  /** Unix timestamp (in seconds) */
+  const $accessTokenExpirationTimestamp = React.useRef<number>()
   const [state, setState] = React.useState<AuthState>(INITIAL_STATE)
   const [user, setUser] = React.useState<User>()
   const router = useRouter()
@@ -70,6 +73,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
         }
 
         window.localStorage.setItem('NEXAUTH_REFRESH_TOKEN', tokenPair.refreshToken)
+        $accessTokenExpirationTimestamp.current = accessTokenPayload.exp
 
         if (isMounted()) {
           setUser(accessTokenPayload.data)
@@ -179,6 +183,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
         }
 
         window.localStorage.setItem('NEXAUTH_REFRESH_TOKEN', tokenPair.refreshToken)
+        $accessTokenExpirationTimestamp.current = accessTokenPayload.exp
 
         if (isMounted()) {
           setUser(accessTokenPayload.data)
@@ -268,6 +273,23 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
     }
   }, [state])
 
+  const watchAccessTokenExpiration = React.useCallback(() => {
+    if ($accessTokenExpirationTimestamp.current === undefined) {
+      return
+    }
+
+    const now = getUnixTime()
+
+    // If the Access Token has less than 2min to live, let's refresh it
+    if ($accessTokenExpirationTimestamp.current < now + 120) {
+      providerValue.refresh()
+
+      return
+    }
+
+    setTimeout(watchAccessTokenExpiration, 60000)
+  }, [$accessTokenExpirationTimestamp.current])
+
   React.useEffect(() => {
     if (!state.isLoading) {
       return
@@ -275,6 +297,10 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
 
     providerValue.refresh()
   }, [state.isLoading])
+
+  React.useEffect(() => {
+    providerValue.refresh()
+  }, [$accessTokenExpirationTimestamp.current])
 
   if (isPrivatePath && state.isLoading) {
     return <Loader />
