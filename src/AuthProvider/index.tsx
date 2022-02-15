@@ -1,6 +1,7 @@
 /* eslint-env browser, node */
 
 import ky, { HTTPError } from 'ky'
+import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router.js'
 import React from 'react'
 
@@ -266,7 +267,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
     return {
       logIn,
       logOut,
-      refresh,
+      refresh: debounce(refresh, 5000) as AuthContext['refresh'],
       signUp,
       state,
       user,
@@ -300,7 +301,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
 
   React.useEffect(() => {
     watchAccessTokenExpiration()
-  }, [$accessTokenExpirationTimestamp.current])
+  }, [providerValue.state.accessToken])
 
   if (isPrivatePath && state.isLoading) {
     return <Loader />

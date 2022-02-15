@@ -39,6 +39,7 @@
     "jose": "4.3.7",
     "jwt-decode": "3.1.2",
     "ky": "0.28.7",
+    "lodash.debounce": "4.0.8",
     "ramda": "0.27.1"
   },
   "devDependencies": {
@@ -50,6 +51,7 @@
     "@testing-library/react-hooks": "7.0.2",
     "@types/bcryptjs": "2.4.2",
     "@types/jest": "27.4.0",
+    "@types/lodash.debounce": "4.0.6",
     "@types/node": "17.0.6",
     "@types/ramda": "0.27.62",
     "@types/react": "17.0.38",
