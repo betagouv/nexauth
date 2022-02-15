@@ -4,10 +4,9 @@
     "allowJs": false,
     "declaration": true,
     "inlineSources": true,
-    "noEmit": false,
+    // "noEmit": false,
     "outDir": "./dist",
-    "rootDir": "./src",
-    "sourceMap": true
+    "rootDir": "./src"
   },
   "exclude": ["**/*.test.ts"],
   "include": ["src/**/*.ts", "src/**/*.tsx"]

@@ -2,28 +2,28 @@
  * @jest-environment jsdom
  */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 
 import getUser from '../getUser'
 
 describe('libs/getUser() [BROWSER]', () => {
-  const bhalaError = ß.error
+  const bhalaError = B.error
   const consoleError = console.error
 
   beforeAll(() => {
-    ß.error = jest.fn()
+    B.error = jest.fn()
     console.error = jest.fn()
   })
 
   afterAll(() => {
-    ß.error = bhalaError
+    B.error = bhalaError
     console.error = consoleError
   })
 
   test('should throw an error when called within a browser environment', async () => {
     await expect(getUser).rejects.toThrow()
 
-    expect(ß.error).toHaveBeenCalledTimes(1)
+    expect(B.error).toHaveBeenCalledTimes(1)
     expect(console.error).toHaveBeenCalledTimes(1)
   })
 })

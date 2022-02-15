@@ -15,14 +15,14 @@ import type { JWTHeaderParameters, KeyLike } from 'jose'
  * JWT Node.js library.
  */
 class Jwt {
-  #algorithm: string
-  #isProduction: boolean
-  #privateKey?: KeyLike | Uint8Array
-  #publicKey?: KeyLike | Uint8Array
+  private algorithm: string
+  private isProduction: boolean
+  private privateKey?: KeyLike | Uint8Array
+  private publicKey?: KeyLike | Uint8Array
 
   constructor() {
-    this.#algorithm = 'EdDSA'
-    this.#isProduction = process.env.NODE_ENV === 'production'
+    this.algorithm = 'EdDSA'
+    this.isProduction = process.env.NODE_ENV === 'production'
   }
 
   public parse<P extends TokenPayload = TokenPayload>(token: string): P | undefined {
@@ -47,13 +47,13 @@ class Jwt {
     try {
       const extirationDate = getUnixTime() + durationInSeconds
       const header: JWTHeaderParameters = {
-        alg: this.#algorithm,
+        alg: this.algorithm,
       }
       const payload = {
         data,
         uid: userId,
       }
-      const privateKey = await this.#getPrivateKey()
+      const privateKey = await this.getPrivateKey()
       const tokenId = cuid()
 
       const token = await new SignJWT(payload)
@@ -81,10 +81,10 @@ class Jwt {
     }
 
     try {
-      const publicKey = await this.#getPublicKey()
+      const publicKey = await this.getPublicKey()
       // https://github.com/panva/jose/blob/main/docs/interfaces/jwt_verify.JWTVerifyOptions.md#properties
       const options: JWTVerifyOptions = {
-        algorithms: [this.#algorithm],
+        algorithms: [this.algorithm],
         clockTolerance: canBeExpired ? Infinity : 0,
       }
 
@@ -103,10 +103,10 @@ class Jwt {
     }
   }
 
-  async #getPrivateKey(): Promise<KeyLike | Uint8Array> {
+  private async getPrivateKey(): Promise<KeyLike | Uint8Array> {
     try {
-      if (this.#privateKey !== undefined) {
-        return this.#privateKey
+      if (this.privateKey !== undefined) {
+        return this.privateKey
       }
 
       const privateKeyAsPem = process.env.EDDSA_PRIVATE_KEY
@@ -114,7 +114,7 @@ class Jwt {
         throw new Error(
           [
             '`EDDSA_PRIVATE_KEY` environment variable is undefined.',
-            this.#isProduction
+            this.isProduction
               ? 'This seems to be a production environment. ' +
                 'Did you forget to run `npx nexauth generate` and add the EcDSA key pair to your deployment env vars?'
               : 'This seems to be a development environment. Did you forget to run `npx nexauth init`?',
@@ -122,18 +122,18 @@ class Jwt {
         )
       }
 
-      this.#privateKey = await importPKCS8(privateKeyAsPem, this.#algorithm)
+      this.privateKey = await importPKCS8(privateKeyAsPem, this.algorithm)
 
-      return this.#privateKey
+      return this.privateKey
     } catch (err) {
       handleError(err, 'libs/Jwt.#getPublicKey()', true)
     }
   }
 
-  async #getPublicKey(): Promise<KeyLike | Uint8Array> {
+  private async getPublicKey(): Promise<KeyLike | Uint8Array> {
     try {
-      if (this.#publicKey !== undefined) {
-        return this.#publicKey
+      if (this.publicKey !== undefined) {
+        return this.publicKey
       }
 
       const publicKeyAsPem = process.env.NEXT_PUBLIC_EDDSA_PUBLIC_KEY
@@ -141,7 +141,7 @@ class Jwt {
         throw new Error(
           [
             '`NEXT_PUBLIC_EDDSA_PUBLIC_KEY` environment variable is undefined.',
-            this.#isProduction
+            this.isProduction
               ? 'This seems to be a production environment. ' +
                 'Did you forget to run `npx nexauth generate` and add the EcDSA key pair to your deployment env vars?'
               : 'This seems to be a development environment. Did you forget to run `npx nexauth init`?',
@@ -149,8 +149,8 @@ class Jwt {
         )
       }
 
-      const publicKey = await importSPKI(publicKeyAsPem, this.#algorithm)
-      this.#publicKey = publicKey
+      const publicKey = await importSPKI(publicKeyAsPem, this.algorithm)
+      this.publicKey = publicKey
 
       return publicKey
     } catch (err) {

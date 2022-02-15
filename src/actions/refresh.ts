@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-import ß from 'bhala'
+import { B } from 'bhala'
 import cuid from 'cuid'
 import { omit, pick, prop, sortBy } from 'ramda'
 
@@ -123,7 +123,7 @@ export default async function refresh<U extends UserWithPassword = UserWithPassw
       }),
     )
   } catch (err) {
-    ß.error(String(err))
+    B.error(String(err))
     console.error(err)
 
     if (CI && err instanceof Error) {
