@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/betagouv/nexauth/compare/v1.3.0...v1.3.1) (2022-02-15)
+
+
+### Bug Fixes
+
+* call right function to watch access token expiration ([#18](https://github.com/betagouv/nexauth/issues/18)) ([967eece](https://github.com/betagouv/nexauth/commit/967eece83cc9049c6330da0d4a6cdd2d2f712127))
+
 # [1.3.0](https://github.com/betagouv/nexauth/compare/v1.2.0...v1.3.0) (2022-02-15)
 
 
