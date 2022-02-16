@@ -44,7 +44,6 @@ yarn prisma migrate deploy
 
 printf "${BLUE}Generating EdDSA key pair for E2E Test App…${NC}\n"
 rm -f ./.gitignore
-cp ./node_modules/nexauth/dist/cli.js ./node_modules/nexauth/dist/cli.mjs
-node ./node_modules/nexauth/dist/cli.mjs init
+node ./node_modules/nexauth/dist/cli.js init
 
 cd ../..

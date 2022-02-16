@@ -7,6 +7,8 @@ import shebang from 'rollup-plugin-preserve-shebang'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 const getConfig = input => ({
+  external: ['bcryptjs'],
+
   input,
 
   output: {
@@ -17,7 +19,7 @@ const getConfig = input => ({
   plugins: [
     peerDepsExternal(),
     nodeResolve({
-      esmExternals: true,
+      preferBuiltins: true,
     }),
     commonjs(),
     json(),
