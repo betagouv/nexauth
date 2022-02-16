@@ -1,7 +1,6 @@
 /* eslint-env browser, node */
 
 import ky, { HTTPError } from 'ky'
-import debounce from 'lodash.debounce'
 import { useRouter } from 'next/router.js'
 import React from 'react'
 
@@ -265,7 +264,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
     return {
       logIn,
       logOut,
-      refresh: debounce(refresh, 5000) as AuthContext['refresh'],
+      refresh,
       signUp,
       state,
       user,

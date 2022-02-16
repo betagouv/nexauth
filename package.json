@@ -78,7 +78,6 @@
     "jose": "4.3.7",
     "jwt-decode": "3.1.2",
     "ky": "0.28.7",
-    "lodash.debounce": "4.0.8",
     "next": "12.0.9",
     "nodemon": "2.0.15",
     "ramda": "0.27.1",
