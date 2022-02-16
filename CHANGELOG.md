@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/betagouv/nexauth/compare/v2.0.1...v2.0.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* move bcryptjs to deps ([aa54fa9](https://github.com/betagouv/nexauth/commit/aa54fa9e65537e3b4da4d8b3c435c46fbbb79f50))
+
 ## [2.0.1](https://github.com/betagouv/nexauth/compare/v2.0.0...v2.0.1) (2022-02-16)
 
 
