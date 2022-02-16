@@ -37,8 +37,8 @@ type AuthProviderProps = {
 const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, privatePaths, SignInDialog }) => {
   /** Unix timestamp (in seconds) */
   const $accessTokenExpirationTimestamp = React.useRef<number>()
+  const $user = React.useRef<User>()
   const [state, setState] = React.useState<AuthState>(INITIAL_STATE)
-  const [user, setUser] = React.useState<User>()
   const router = useRouter()
   const isMounted = useIsMounted()
 
@@ -72,7 +72,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
         $accessTokenExpirationTimestamp.current = tokenPairWithPayload.accessTokenPayload.exp
 
         if (isMounted()) {
-          setUser(tokenPairWithPayload.accessTokenPayload.data)
+          $user.current = tokenPairWithPayload.accessTokenPayload.data
           setState({
             accessToken: tokenPairWithPayload.accessToken,
             isAuthenticated: true,
@@ -138,7 +138,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
         }
 
         if (isMounted()) {
-          setUser(undefined)
+          $user.current = undefined
           setState({
             isAuthenticated: false,
             isLoading: false,
@@ -184,7 +184,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
         $accessTokenExpirationTimestamp.current = tokenPairWithPayload.accessTokenPayload.exp
 
         if (isMounted()) {
-          setUser(tokenPairWithPayload.accessTokenPayload.data)
+          $user.current = tokenPairWithPayload.accessTokenPayload.data
           setState({
             accessToken: tokenPairWithPayload.accessToken,
             isAuthenticated: true,
@@ -267,7 +267,7 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
       refresh,
       signUp,
       state,
-      user,
+      user: $user.current,
     }
   }, [state])
 
