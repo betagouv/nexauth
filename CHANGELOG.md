@@ -1,3 +1,15 @@
+## [2.0.1](https://github.com/betagouv/nexauth/compare/v2.0.0...v2.0.1) (2022-02-16)
+
+
+### Bug Fixes
+
+* **AuthProvider:** remove debounce on refresh() ([7f423f1](https://github.com/betagouv/nexauth/commit/7f423f17343cc74085c0aefecffb8a2b768f0167))
+
+
+### Performance Improvements
+
+* **AuthProvider:** replace user state by ref to save one re-render ([354c730](https://github.com/betagouv/nexauth/commit/354c730c1b7150b15efbfd096781a1d74d18bb3c))
+
 # [2.0.0](https://github.com/betagouv/nexauth/compare/v1.4.1...v2.0.0) (2022-02-15)
 
 
