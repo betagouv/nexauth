@@ -33,6 +33,6 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           branch: ci-release-v${{ steps.get_version.outputs.version }}
-          commit-message: "ci(release): ${{ steps.get_version.outputs.version }} [skip ci]"
-          title: "ci(release): ${{ steps.get_version.outputs.version }} [skip ci]"
+          commit-message: "ci(release): ${{ steps.get_version.outputs.version }}"
+          title: "ci(release): ${{ steps.get_version.outputs.version }}"
           token: ${{ secrets.GH_PAT }}
