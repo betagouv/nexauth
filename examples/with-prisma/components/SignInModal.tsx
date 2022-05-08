@@ -32,10 +32,29 @@ export default function SignInModal(props: SignInModalProps) {
     const res = await auth.logIn(email, password)
     if (res.isError) {
       if (res.error.email !== undefined) {
-        if (res.error.email === NexauthError.LOG_IN_WRONG_EMAIL_OR_PASSWORD) {
-          setErrors({
-            email: 'Wrong email and/or password.',
-          })
+        switch (res.error.email) {
+          case NexauthError.LOG_IN_NOT_FOUND:
+            setErrors({
+              email: 'This email does not match any existing account.',
+            })
+            break
+
+          case NexauthError.LOG_IN_UNACCEPTABLE_CONDITION:
+            setErrors({
+              email: 'Your account has not been activated.',
+            })
+            break
+
+          case NexauthError.LOG_IN_WRONG_EMAIL_OR_PASSWORD:
+            setErrors({
+              email: 'Wrong email and/or password.',
+            })
+            break
+
+          default:
+            setErrors({
+              email: 'Something went wrong.',
+            })
         }
       }
 

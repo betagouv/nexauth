@@ -85,11 +85,39 @@ const AuthProvider: FunctionComponent<AuthProviderProps> = ({ children, Loader, 
         }
       } catch (err) {
         if (err instanceof HTTPError) {
-          return {
-            error: {
-              email: NexauthError.LOG_IN_WRONG_EMAIL_OR_PASSWORD,
-            },
-            isError: true,
+          switch (err.response.status) {
+            case 401:
+              return {
+                error: {
+                  email: NexauthError.LOG_IN_WRONG_EMAIL_OR_PASSWORD,
+                },
+                isError: true,
+              }
+
+            case 403:
+              return {
+                error: {
+                  email: NexauthError.LOG_IN_UNACCEPTABLE_CONDITION,
+                },
+                isError: true,
+              }
+
+            case 404:
+              return {
+                error: {
+                  email: NexauthError.LOG_IN_NOT_FOUND,
+                },
+                isError: true,
+              }
+
+            default: {
+              return {
+                error: {
+                  email: NexauthError.UNEXPECTED_ERROR,
+                },
+                isError: true,
+              }
+            }
           }
         }
 
