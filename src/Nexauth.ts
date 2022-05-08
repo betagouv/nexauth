@@ -25,6 +25,7 @@ export default function Nexauth<U extends UserWithPassword = UserWithPassword>(
     firstUserDefaultProps = {},
     logInConditions = [],
     newUserAllowedProps = ['email', 'password'],
+    withNotFoundError = false,
   } = config || {}
 
   return async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
@@ -50,6 +51,7 @@ export default function Nexauth<U extends UserWithPassword = UserWithPassword>(
           accessTokenPublicUserProps,
           customLogIn,
           logInConditions,
+          withNotFoundError,
         })
 
       case ACTION.LOG_OUT:

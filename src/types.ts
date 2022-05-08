@@ -22,6 +22,7 @@ export type NexauthConfig<U extends UserWithPassword = UserWithPassword> = {
   firstUserDefaultProps: Partial<U>
   logInConditions: Array<(user: U) => boolean | Promise<boolean>>
   newUserAllowedProps: Array<keyof U>
+  withNotFoundError: boolean
 }
 
 export type NexauthOptions<U extends UserWithPassword = UserWithPassword> = {

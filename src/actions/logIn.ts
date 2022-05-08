@@ -32,10 +32,12 @@ export default async function logIn<U extends UserWithPassword = UserWithPasswor
     accessTokenPublicUserProps,
     customLogIn,
     logInConditions,
+    withNotFoundError,
   }: {
     accessTokenPublicUserProps: NexauthConfig<U>['accessTokenPublicUserProps']
     customLogIn?: NexauthOptions['customLogIn']
     logInConditions: NexauthConfig<U>['logInConditions']
+    withNotFoundError: NexauthConfig['withNotFoundError']
   },
 ) {
   try {
@@ -60,7 +62,11 @@ export default async function logIn<U extends UserWithPassword = UserWithPasswor
       email: credentials.email,
     })
     if (user === null) {
-      res.status(404).json(new ApiError('Not found.', 404))
+      if (withNotFoundError) {
+        res.status(404).json(new ApiError('Not found.', 404))
+      } else {
+        res.status(401).json(new ApiError('Unauthorized.', 401))
+      }
 
       return
     }

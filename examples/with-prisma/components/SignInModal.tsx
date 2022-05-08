@@ -33,12 +33,6 @@ export default function SignInModal(props: SignInModalProps) {
     if (res.isError) {
       if (res.error.email !== undefined) {
         switch (res.error.email) {
-          case NexauthError.LOG_IN_NOT_FOUND:
-            setErrors({
-              email: 'This email does not match any existing account.',
-            })
-            break
-
           case NexauthError.LOG_IN_UNACCEPTABLE_CONDITION:
             setErrors({
               email: 'Your account has not been activated.',
