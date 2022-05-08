@@ -1,3 +1,11 @@
+# [2.1.0](https://github.com/betagouv/nexauth/compare/v2.0.3...v2.1.0) (2022-05-08)
+
+
+### Features
+
+* **AuthProvider:** add more error cases ([b9941de](https://github.com/betagouv/nexauth/commit/b9941de785a5d106d6e8633f52e07a8116a83c29))
+* **Nexauth:** make not found error conditional via config.withNotFoundError ([a1dd9d5](https://github.com/betagouv/nexauth/commit/a1dd9d511faeb7d53bcf228c394abb621ca100e3))
+
 ## [2.0.3](https://github.com/betagouv/nexauth/compare/v2.0.2...v2.0.3) (2022-02-28)
 
 ## [2.0.2](https://github.com/betagouv/nexauth/compare/v2.0.1...v2.0.2) (2022-02-16)
