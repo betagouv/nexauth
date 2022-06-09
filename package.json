@@ -44,7 +44,8 @@
     "test:unit:watch": "yarn test:unit --watch"
   },
   "dependencies": {
-    "bcryptjs": "2.4.3"
+    "bcryptjs": "2.4.3",
+    "clipboardy": "3.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.17.2",
@@ -69,7 +70,6 @@
     "@types/react": "17.0.38",
     "babel-jest": "27.5.1",
     "bhala": "3.0.4",
-    "clipboardy": "3.0.0",
     "codecov": "3.8.3",
     "cross-env": "7.0.3",
     "cuid": "2.1.8",
