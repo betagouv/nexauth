@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/betagouv/nexauth/compare/v2.1.0...v2.1.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* **cli:** move clipboardy to deps ([81272b8](https://github.com/betagouv/nexauth/commit/81272b87bd0465cacafe275b72d4f2743897276f))
+
 # [2.1.0](https://github.com/betagouv/nexauth/compare/v2.0.3...v2.1.0) (2022-05-08)
 
 
